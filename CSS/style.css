@@ -43,6 +43,10 @@ nav{
     color: white;
 }
 
+.item_active:hover{
+    cursor: default;
+}
+
 nav ul{
     width: 75%;
     display: flex;

@@ -1,9 +1,7 @@
 .header {
     width: 100vw;
     height: 9vh;
-    background-color: #F0DDF4
-        /*#F4E7DD*/
-    ;
+    background-color: #F0DDF4;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -14,17 +12,20 @@
 
 h1 {
     font-family: 'Fjalla One', sans-serif;
+    text-shadow: 0px 2px 3px rgba(31, 28, 28, 0.58);
 }
 
 .arrows {
     padding: 2%;
+    text-shadow: 0px 2px 3px rgba(31, 28, 28, 0.58);
 }
+
 
 .material-symbols-outlined {
     color: #DC046C;
 }
 
-.material-symbols-outlined:hover{
+.material-symbols-outlined:hover {
     color: #374BA4;
 }
 
@@ -47,6 +48,10 @@ h1 {
     justify-content: space-evenly;
     align-items: center;
     font-size: 100%;
+}
+
+.item_check{
+    cursor: pointer;
 }
 
 .container_search {
@@ -83,6 +88,8 @@ section ul {
     align-items: center;
     justify-content: center;
     text-align: center;
+    box-shadow: 4px 7px 15px 3px rgba(55, 75, 164, 0.6);
+
 }
 
 img {
@@ -113,9 +120,17 @@ img {
     align-items: center;
 }
 
+.item_details p{
+    text-decoration: underline;
+}
+
 h4 {
     font-size: 25px;
     font-family: 'Fjalla One', sans-serif;
+}
+
+h1, h4, p{
+    cursor: default;
 }
 
 button {
@@ -127,7 +142,7 @@ button {
     border: 0px;
     padding: 4px;
     font-weight: bold;
-}
+    box-shadow: 0px 5px 12px 2px rgba(55,75,164,0.89);}
 
 button:hover {
     background-color: #374BA4;
@@ -156,6 +171,8 @@ footer>div>ul {
     justify-content: space-evenly;
     align-items: center;
     color: #DC046C;
+    text-shadow: 0px 1px 2px rgba(31, 28, 28, 0.58);
+
 }
 
 ul .fa-brands:hover {
@@ -171,7 +188,7 @@ ul .fa-brands:hover {
     justify-content: flex-end;
     padding-right: 2%;
     color: #DC046C;
-
+    text-shadow: 0px 1px 2px rgba(31, 28, 28, 0.58);
 }
 
 footer p {
