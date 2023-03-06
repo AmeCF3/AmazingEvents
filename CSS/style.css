@@ -68,3 +68,65 @@ nav ul li:hover{
     color: white;
     cursor: pointer;
 }
+
+footer {
+    width: 100vw;
+    height: 7vh;
+    background-color: #F0DDF4;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.item_icons {
+    width: 15%;
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+footer>div>ul {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #DC046C;
+    text-shadow: 0px 1px 2px rgba(31, 28, 28, 0.58);
+
+}
+
+ul .fa-brands:hover {
+    color: #374BA4;
+    cursor: pointer;
+}
+
+.item_copyright {
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2%;
+    color: #DC046C;
+    text-shadow: 0px 1px 2px rgba(31, 28, 28, 0.58);
+}
+
+footer p {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+button{
+    color: white;
+    background-color: #DC046C;
+    border-radius: 2px;
+    border: 0px;
+    padding: 4px;
+    font-weight: bold;
+    box-shadow: 0px 5px 12px 2px rgba(55, 75, 164, 0.89)
+}
+
+button:hover {
+    background-color: #374BA4;
+    cursor: pointer;
+}
