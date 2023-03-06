@@ -1,0 +1,179 @@
+.header {
+    width: 100vw;
+    height: 9vh;
+    background-color: #F0DDF4
+        /*#F4E7DD*/
+    ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    color: #DC046C;
+}
+
+h1 {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.arrows {
+    padding: 2%;
+}
+
+.material-symbols-outlined {
+    color: #DC046C;
+}
+
+.material-symbols-outlined:hover{
+    color: #374BA4;
+}
+
+.container_searches {
+    width: 100vw;
+    height: 4vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container_filter {
+    width: 80vw;
+    height: 4vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 100%;
+}
+
+.container_search {
+    width: 20vw;
+    height: 4vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #DC046C;
+}
+
+label {
+    font-size: 100%;
+}
+
+section ul {
+    width: 100vw;
+    height: 65vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+.card_container {
+    border: 1.3px solid #374BA4;
+    border-radius: 2px;
+    width: 280px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+img {
+    width: 250px;
+}
+
+.item_image {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item_description {
+    width: 95%;
+    height: 30%;
+    margin-bottom: 4px;
+}
+
+.item_details {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+h4 {
+    font-size: 25px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+button {
+    width: 100%;
+    height: 90%;
+    color: white;
+    background-color: #DC046C;
+    border-radius: 2px;
+    border: 0px;
+    padding: 4px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #374BA4;
+    cursor: pointer;
+}
+
+footer {
+    width: 100vw;
+    height: 7vh;
+    background-color: #F0DDF4;
+    display: flex;
+    flex-direction: row;
+}
+
+.item_icons {
+    width: 15%;
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+footer>div>ul {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #DC046C;
+}
+
+ul .fa-brands:hover {
+    color: #374BA4;
+    cursor: pointer;
+}
+
+.item_copyright {
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2%;
+    color: #DC046C;
+
+}
+
+footer p {
+    font-family: 'Fjalla One', sans-serif;
+}
