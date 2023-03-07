@@ -18,48 +18,48 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/jpg" href="./Images/favicon2.png">
-    <link rel="stylesheet" href="./CSS/style.css">
-    <link rel="stylesheet" href="./CSS/index.css">
+    <link rel="icon" type="image/jpg" href="../Images/favicon2.png">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/index.css">
     <title>Amazing Events</title>
 </head>
 
 <body>
     <nav>
         <div class="logo_container">
-            <img class="item_logo" src="/Images/LogoAmazingEvents.png" alt="Logo Amazin Events">
+            <img class="item_logo" src="../Images/LogoAmazingEvents.png" alt="Logo Amazin Events">
         </div>
         <div class="nav_container">
             <ul>
-                <li class="item_active">Home</li>
+                <li><a class="link_nav" href="../index.html">Home</a></li>
 
-                <li><a class="link_nav" href="./Pages/UpcomingEvents.html">Eventos futuros</a></li>
+                <li class="item_active">Eventos futuros</li>
 
-                <li><a class="link_nav" href="./Pages/PastEvents.html">Eventos pasados</a></li>
+                <li><a class="link_nav" href="./PastEvents.html">Eventos pasados</a></li>
 
-                <li><a class="link_nav" href="./Pages/Contact.html">Contacto</a></li>
+                <li><a class="link_nav" href="./Contact.html">Contacto </a></li>
 
-                <li><a class="link_nav" href="./Pages/Stats.html">Estadísticas</a></li>
+                <li><a class="link_nav" href="./Stats.html">Estadísticas </a></li>
             </ul>
         </div>
     </nav>
     <main>
         <section class="header">
             <div class="arrows">
-                <a href="./Pages/Stats.html">
+                <a href="../index.html">
                     <span class="material-symbols-outlined">
                         arrow_back_ios
                     </span></a>
             </div>
-            <h1>HOME</h1>
+            <h1>EVENTOS FUTUROS</h1>
             <div class="arrows">
-                <a href="./Pages/UpcomingEvents.html">
+                <a href="./PastEvents.html">
                     <span class="material-symbols-outlined">
                         arrow_forward_ios
                     </span></a>
+
             </div>
         </section>
-
         <div class="container_searches">
             <div class="container_filter">
                 <div class="filtro">
@@ -71,6 +71,12 @@
                 <div class="filtro">
                     <label for="Ferias_de_comida">
                         <input class="item_check" type="checkbox" id="Ferias_de_comida"> Ferias de comida
+                    </label>
+                </div>
+
+                <div class="filtro">
+                    <label for="Fiesta_de_disfraces">
+                        <input class="item_check" type="checkbox" id="Fiesta_de_disfraces"> Fiesta de disfraces
                     </label>
                 </div>
 
@@ -109,7 +115,22 @@
                 <li>
                     <div class="card_container">
                         <div class="item_image">
-                            <img class="img_pages" src="./Images/Conciertodemusica1.jpg" alt="Concierto de música">
+                            <img class="img_pages" src="../Images/Cine7.jpg" alt="cine">
+                        </div>
+                        <div class="item_description">
+                            <h4 style="color: #DC046C;">Avengers</h4>
+                            <p>Premier en 3D </p>
+                        </div>
+                        <div class="item_details">
+                            <p>$250</p>
+                            <a  class="button_index" href="./Details.html">Más detalles</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card_container">
+                        <div class="item_image">
+                            <img class="img_pages" src="../Images/Conciertodemusica1.jpg" alt="Concierto de música">
                         </div>
                         <div class="item_description">
                             <h4 style="color: #DC046C;">Metallica en concierto</h4>
@@ -117,14 +138,14 @@
                         </div>
                         <div class="item_details">
                             <p>$150</p>
-                            <a  class="button_index" href="./Pages/Details.html">Más detalles</a>
+                            <a  class="button_index" href="./Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="card_container">
                         <div class="item_image">
-                            <img class="img_pages" src="./Images/Fiestadedisfraces1.jpg" alt="Fiesta de disfraces">
+                            <img class="img_pages" src="../Images/Fiestadedisfraces1.jpg" alt="Fiesta de disfraces">
                         </div>
                         <div class="item_description">
                             <h4 style="color: #DC046C;">Noche de Halloween</h4>
@@ -132,37 +153,7 @@
                         </div>
                         <div class="item_details">
                             <p>$12</p>
-                            <a  class="button_index" href="./Pages/Details.html">Más detalles</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="card_container">
-                        <div class="item_image">
-                            <img class="img_pages" src="./Images/Feriadecomidas7.jpg" alt="Feria de comida">
-                        </div>
-                        <div class="item_description">
-                            <h4 style="color: #DC046C;">Fiesta de las colectividades</h4>
-                            <p>Disfruta de tus platos favoritos</p>
-                        </div>
-                        <div class="item_details">
-                            <p>$5</p>
-                            <a  class="button_index" href="./Pages/Details.html">Más detalles</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="card_container">
-                        <div class="item_image">
-                            <img class="img_pages" src="./Images/Salidaalmuseo5.jpg" alt="Salida al museo">
-                        </div>
-                        <div class="item_description">
-                            <h4 style="color: #DC046C;">Parque Jurasico</h4>
-                            <p>Vamos al museo de paleontología</p>
-                        </div>
-                        <div class="item_details">
-                            <p>$15</p>
-                            <a  class="button_index" href="./Pages/Details.html">Más detalles</a>
+                            <a  class="button_index" href="./Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
@@ -182,4 +173,3 @@
         </div>
     </footer>
 </body>
-</html>

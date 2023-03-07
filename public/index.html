@@ -18,47 +18,48 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/jpg" href="../Images/favicon2.png">
-    <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="icon" type="image/jpg" href="./Images/favicon2.png">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/index.css">
     <title>Amazing Events</title>
 </head>
 
 <body>
     <nav>
         <div class="logo_container">
-            <img class="item_logo" src="/Images/LogoAmazingEvents.png" alt="Logo Amazin Events">
+            <img class="item_logo" src="./Images/LogoAmazingEvents.png" alt="Logo Amazin Events">
         </div>
         <div class="nav_container">
             <ul>
-                <li><a class="link_nav" href="../index.html">Home</a></li>
+                <li class="item_active">Home</li>
 
-                <li><a class="link_nav" href="./UpcomingEvents.html">Eventos futuros</a></li>
+                <li><a class="link_nav" href="./Pages/UpcomingEvents.html">Eventos futuros</a></li>
 
-                <li class="item_active">Eventos Pasados</li>
+                <li><a class="link_nav" href="./Pages/PastEvents.html">Eventos pasados</a></li>
 
-                <li><a class="link_nav" href="./Contact.html">Contacto </a></li>
+                <li><a class="link_nav" href="./Pages/Contact.html">Contacto</a></li>
 
-                <li><a class="link_nav" href="./Stats.html">Estadísticas </a></li>
+                <li><a class="link_nav" href="./Pages/Stats.html">Estadísticas</a></li>
             </ul>
         </div>
     </nav>
     <main>
         <section class="header">
             <div class="arrows">
-                <a href="./UpcomingEvents.html">
+                <a href="./Pages/Stats.html">
                     <span class="material-symbols-outlined">
                         arrow_back_ios
                     </span></a>
             </div>
-            <h1>EVENTOS PASADOS</h1>
+            <h1>HOME</h1>
             <div class="arrows">
-                <a href="./Contact.html">
+                <a href="./Pages/UpcomingEvents.html">
                     <span class="material-symbols-outlined">
                         arrow_forward_ios
                     </span></a>
             </div>
         </section>
+
         <div class="container_searches">
             <div class="container_filter">
                 <div class="filtro">
@@ -70,6 +71,12 @@
                 <div class="filtro">
                     <label for="Ferias_de_comida">
                         <input class="item_check" type="checkbox" id="Ferias_de_comida"> Ferias de comida
+                    </label>
+                </div>
+
+                <div class="filtro">
+                    <label for="Fiesta_de_disfraces">
+                        <input class="item_check" type="checkbox" id="Fiesta_de_disfraces"> Fiesta de disfraces
                     </label>
                 </div>
 
@@ -108,22 +115,37 @@
                 <li>
                     <div class="card_container">
                         <div class="item_image">
-                            <img class="img_pages" src="../Images/Libros7.jpg" alt="Feria de libros">
+                            <img class="img_pages" src="./Images/Conciertodemusica1.jpg" alt="Concierto de música">
                         </div>
                         <div class="item_description">
-                            <h4 style="color: #DC046C;">Feria del libro Escolar</h4>
-                            <p>Trae un libro escolar</p>
+                            <h4 style="color: #DC046C;">Metallica en concierto</h4>
+                            <p>Único recital</p>
                         </div>
                         <div class="item_details">
-                            <p>$1</p>
-                            <a  class="button_index" href="./Details.html">Más detalles</a>
+                            <p>$150</p>
+                            <a  class="button_index" href="./Pages/Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="card_container">
                         <div class="item_image">
-                            <img class="img_pages" src="../Images/Feriadecomidas7.jpg" alt="Feria de comida">
+                            <img class="img_pages" src="./Images/Fiestadedisfraces1.jpg" alt="Fiesta de disfraces">
+                        </div>
+                        <div class="item_description">
+                            <h4 style="color: #DC046C;">Noche de Halloween</h4>
+                            <p>Ven con tu disfraz</p>
+                        </div>
+                        <div class="item_details">
+                            <p>$12</p>
+                            <a  class="button_index" href="./Pages/Details.html">Más detalles</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card_container">
+                        <div class="item_image">
+                            <img class="img_pages" src="./Images/Feriadecomidas7.jpg" alt="Feria de comida">
                         </div>
                         <div class="item_description">
                             <h4 style="color: #DC046C;">Fiesta de las colectividades</h4>
@@ -131,29 +153,14 @@
                         </div>
                         <div class="item_details">
                             <p>$5</p>
-                            <a  class="button_index" href="./Details.html">Más detalles</a>
+                            <a  class="button_index" href="./Pages/Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="card_container">
                         <div class="item_image">
-                            <img class="img_pages" src="../Images/Maraton3.jpg" alt="Maratón">
-                        </div>
-                        <div class="item_description">
-                            <h4 style="color: #DC046C;">10K por la vida</h4>
-                            <p>Ven y haz ejercicio</p>
-                        </div>
-                        <div class="item_details">
-                            <p>$3</p>
-                            <a  class="button_index" href="./Details.html">Más detalles</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="card_container">
-                        <div class="item_image">
-                            <img class="img_pages" src="../Images/Salidaalmuseo5.jpg" alt="Salida al museo">
+                            <img class="img_pages" src="./Images/Salidaalmuseo5.jpg" alt="Salida al museo">
                         </div>
                         <div class="item_description">
                             <h4 style="color: #DC046C;">Parque Jurasico</h4>
@@ -161,7 +168,7 @@
                         </div>
                         <div class="item_details">
                             <p>$15</p>
-                            <a  class="button_index" href="./Details.html">Más detalles</a>
+                            <a  class="button_index" href="./Pages/Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
@@ -180,4 +187,29 @@
             <p>ACNUR Dic/2022</p>
         </div>
     </footer>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyC9c8xOVbN8FBmXwNFzMMsG2NUMHKyKX0k",
+          authDomain: "amazing-events-14.firebaseapp.com",
+          projectId: "amazing-events-14",
+          storageBucket: "amazing-events-14.appspot.com",
+          messagingSenderId: "28818281852",
+          appId: "1:28818281852:web:b629cd4d5a896168b580f9",
+          measurementId: "G-G9MBRQF785"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+
 </body>
+</html>
