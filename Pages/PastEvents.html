@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-    <link rel="icon" href="../Images/favicon (2).png" type="PNG" sizes="16x16">
+    <link rel="icon" type="image/jpg" href="../Images/favicon2.png">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <title>Amazing Events</title>
@@ -27,26 +27,19 @@
 <body>
     <nav>
         <div class="logo_container">
-            <img class="item_logo" src="../Images/Logo Amazing Events.png" alt="Logo Amazin Events">
+            <img class="item_logo" src="/Images/LogoAmazingEvents.png" alt="Logo Amazin Events">
         </div>
         <div class="nav_container">
             <ul>
-                <a href="../index.html">
-                    <li>Home</li>
-                </a>
+                <li><a class="link_nav" href="../index.html">Home</a></li>
 
-                <a href="./UpcomingEvents.html">
-                    <li>Eventos Futuros</li>
-                </a>
+                <li><a class="link_nav" href="./UpcomingEvents.html">Eventos futuros</a></li>
 
                 <li class="item_active">Eventos Pasados</li>
 
-                <a href="./Contact.html">
-                    <li>Contacto</li>
-                </a>
-                <a href="./Stats.html">
-                    <li>Estadísticas</li>
-                </a>
+                <li><a class="link_nav" href="./Contact.html">Contacto </a></li>
+
+                <li><a class="link_nav" href="./Stats.html">Estadísticas </a></li>
             </ul>
         </div>
     </nav>
@@ -66,7 +59,7 @@
                     </span></a>
             </div>
         </section>
-        <section class="container_searches">
+        <div class="container_searches">
             <div class="container_filter">
                 <div class="filtro">
                     <label for="Carrera">
@@ -75,14 +68,14 @@
                 </div>
 
                 <div class="filtro">
-                    <label for="Ferias de comida">
-                        <input class="item_check" type="checkbox" id="Ferias de comida"> Ferias de comida
+                    <label for="Ferias_de_comida">
+                        <input class="item_check" type="checkbox" id="Ferias_de_comida"> Ferias de comida
                     </label>
                 </div>
 
                 <div class="filtro">
-                    <label for="Intercambio de Libros">
-                        <input class="item_check" type="checkbox" id="Intercambio de libros"> Intercambio de libros
+                    <label for="Intercambio_de_Libros">
+                        <input class="item_check" type="checkbox" id="Intercambio_de_Libros"> Intercambio de libros
                     </label>
                 </div>
 
@@ -93,24 +86,24 @@
                 </div>
 
                 <div class="filtro">
-                    <label for="Salidas al museo">
-                        <input class="item_check" type="checkbox" id="Salidas al museo"> Salidas al museo
+                    <label for="Salidas_al_museo">
+                        <input class="item_check" type="checkbox" id="Salidas_al_museo"> Salidas al museo
                     </label>
                 </div>
 
                 <div class="filtro">
-                    <label for="Vamos al cine">
-                        <input class="item_check" type="checkbox" id="Vamos al cine"> Vamos al cine
+                    <label for="Vamos_al_cine">
+                        <input class="item_check" type="checkbox" id="Vamos_al_cine"> Vamos al cine
                     </label>
                 </div>
             </div>
             <div class="container_search">
                 <label for="buscador"><i class="fa-solid fa-magnifying-glass"></i></label>
-                <input type="text" name="Evento">
+                <input type="text" name="Evento" id="buscador">
             </div>
-        </section>
+        </div>
 
-        <section>
+        <div class="section">
             <ul>
                 <li>
                     <div class="card_container">
@@ -123,14 +116,14 @@
                         </div>
                         <div class="item_details">
                             <p>$1</p>
-                            <a href="./Details.html"><button>Más detalles</button></a>
+                            <a  class="button_index" href="./Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="card_container">
                         <div class="item_image">
-                            <img class="img_pages" src="../Images/Feria de comidas7.jpg" alt="Feria de comida">
+                            <img class="img_pages" src="../Images/Feriadecomidas7.jpg" alt="Feria de comida">
                         </div>
                         <div class="item_description">
                             <h4 style="color: #DC046C;">Fiesta de las colectividades</h4>
@@ -138,7 +131,7 @@
                         </div>
                         <div class="item_details">
                             <p>$5</p>
-                            <a href="./Details.html"><button>Más detalles</button></a>
+                            <a  class="button_index" href="./Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
@@ -153,14 +146,14 @@
                         </div>
                         <div class="item_details">
                             <p>$3</p>
-                            <a href="./Details.html"><button>Más detalles</button></a>
+                            <a  class="button_index" href="./Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="card_container">
                         <div class="item_image">
-                            <img class="img_pages" src="../Images/Salida al museo5.jpg" alt="Salida al museo">
+                            <img class="img_pages" src="../Images/Salidaalmuseo5.jpg" alt="Salida al museo">
                         </div>
                         <div class="item_description">
                             <h4 style="color: #DC046C;">Parque Jurasico</h4>
@@ -168,19 +161,19 @@
                         </div>
                         <div class="item_details">
                             <p>$15</p>
-                            <a href="./Details.html"><button>Más detalles</button></a>
+                            <a  class="button_index" href="./Details.html">Más detalles</a>
                         </div>
                     </div>
                 </li>
             </ul>
-        </section>
+        </div>
     </main>
     <footer>
         <div class="item_icons">
             <ul>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-whatsapp"></i>
+                <li><i class="fa-brands fa-instagram"></i></li>
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-whatsapp"></i></li>
             </ul>
         </div>
         <div class="item_copyright">

@@ -45,6 +45,8 @@ nav{
 
 .item_active:hover{
     cursor: default;
+    color: #F4E7DD;
+
 }
 
 nav ul{
@@ -58,15 +60,18 @@ nav ul{
 nav ul li{
     border-radius: 2px;
     background-color: rgb(220, 4, 108);
-    color: #F4E7DD;
     padding: 3px;
-    
+    text-decoration: none;
 }
 
 nav ul li:hover{
     background-color: #BF4086;
     color: white;
     cursor: pointer;
+}
+
+.link_nav{
+    color: #374BA4;
 }
 
 footer {
@@ -130,3 +135,4 @@ button:hover {
     background-color: #374BA4;
     cursor: pointer;
 }
+
