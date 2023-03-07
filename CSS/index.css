@@ -93,8 +93,9 @@ section ul {
     margin-bottom: 10%;
 }
 
-img {
+.img_pages {
     width: 250px;
+    box-shadow: 4px 6px 6px -2px rgba(107,107,107,0.75);
 }
 
 .item_image {
