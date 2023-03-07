@@ -1,9 +1,22 @@
-.container_table{
+.container_table {
     width: 100vw;
     height: 74vh;
+    display: flex;
+    flex-direction: row;
+    align-items: normal;
+    justify-content: center;
 }
 
-div table{
-    border: 1px solid #374BA4  ;
-    
+div table {
+    margin-top: 12px;
+    height: 70vh;
+    border: 1px solid #374BA4;
+}
+
+table{
+    border: 1px solid #374BA4 ;
+}
+
+td{
+    border: 1px solid #374BA4 ;
 }

@@ -40,7 +40,7 @@ h1 {
 }
 
 .container_filter {
-    width: 80vw;
+    width: 80%;
     height: 4vh;
     display: flex;
     flex-direction: row;
@@ -55,13 +55,18 @@ h1 {
 }
 
 .container_search {
-    width: 20vw;
+    width: 20%;
     height: 4vh;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     color: #DC046C;
+}
+
+.item_search{
+    width: 70%;
 }
 
 label {
