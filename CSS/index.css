@@ -1,5 +1,6 @@
-body{
-    padding-bottom: 15vh;;
+body {
+    padding-bottom: 15vh;
+    ;
     min-height: 100vh;
     position: relative;
 }
@@ -8,33 +9,36 @@ body{
     width: 100vw;
     height: 27vh;
     background-image: url(../Images/fiesta.jpg);
-   background-size: 1000px;
-   background-position: 50px, 200px;
+    background-size: 1000px;
+    background-position: 50px, 200px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-size: 20px;
-    color:white;
+    color: white;
 }
 
 h1 {
     text-shadow: 0px 2px 3px rgba(31, 28, 28, 0.58);
+    /* text-transform: uppercase; */
     font-size: 50px;
 }
 
+
 .arrows {
-    padding: 2%;
+    padding: 5%;
     text-shadow: 0px 2px 3px rgba(31, 28, 28, 0.58);
 }
 
 
 .material-symbols-outlined {
+    font-size: 35px;
     color: #D42C8C;
 }
 
 .material-symbols-outlined:hover {
-    color: #374BA4;
+    color: #ffffff;
 }
 
 .container_searches {
@@ -81,16 +85,16 @@ label {
     font-size: 100%;
 }
 
-.section{
+.section {
     width: 100vw;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     margin-top: 18px;
-    
+
 }
 
-.ul{
+.ul {
     width: 100vw;
     height: fit-content;
     display: flex;
@@ -103,7 +107,7 @@ label {
 .card_container {
     border-radius: 6px;
     width: 280px;
-    height: 350px;
+    height: 330px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,30 +125,30 @@ label {
 
 .item_image {
     width: 100%;
-    height: 50%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
 }
 
 .item_description {
     width: 95%;
-    height: 30%;
+    height: 20%;
     margin-bottom: 4px;
     display: flex;
     flex-direction: column;
-    justify-content:flex-start;
-    
+    justify-content: flex-start;
+
 }
 
 .item_details {
     width: 100%;
-    height: 12%;
+    height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
 }
 
 
@@ -179,4 +183,15 @@ p {
     background-color: #703fc0;
     border: 1px solid #703fc0;
     cursor: pointer;
+}
+
+
+
+@media screen and (min-width: 1024px) {}
+
+
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+    .container_searches {
+        padding-bottom: 28px;
+    }
 }

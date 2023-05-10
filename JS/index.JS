@@ -9,61 +9,61 @@ let nombreEventos = document.getElementById("allEvents")
 let contenedorFiltros = document.getElementsByClassName("container_searches")
 var textoHTML = document.getElementById("form")
 
-
 // RESALTAR BOTONES DEL NAVBAR Y MOSTRAR DIFERENTES PÁGINAS
 
-var selectNav = Array.from(document.querySelectorAll(".link_nav"));
-selectNav.forEach(function (element) {
+var selectNav = document.querySelectorAll(".link_nav");
+var buttonNav = [];
+
+for (var i = 0; i < selectNav.length; i++) {
+    const element = selectNav[i];
+    buttonNav.push(selectNav[i].innerText);
     element.addEventListener("click", function (e) {
+        document.getElementById("headDinamico").innerHTML = e.target.innerText;
         imprimir(e.target.id);
     });
-});
+}
 
-//FUNCIÓN PARA CAMBIAR DE PÁGINA, HEADER Y RESALTAR BOTONES NAVABAR
+//FUNCIÓN PARA CAMBIAR DE PÁGINA, HEADER Y RESALTAR BOTONES NAVBAR
 function imprimir(id) {
-    var activeClasses = {
-        "upcoming": [1],
-        "past": [2],
-        "contact": [3],
-        "stats": [4],
-        "home": [0]
-    };
-    selectNav.forEach(function (element, index) {
-        if (activeClasses[id] && activeClasses[id].includes(index)) {
+    var index = 0;
+
+    switch (id) {
+        case "upcoming":
+            index = 1;
+            textoHTML.innerHTML = "";
+            display(eventosFuturos);
+            break;
+        case "past":
+            index = 2;
+            textoHTML.innerHTML = "";
+            display(eventosPasados);
+            break;
+        case "contact":
+            index = 3;
+            nombreEventos.innerHTML = "";
+            printForm();
+            break;
+        case "stats":
+            index = 4;
+            nombreEventos.innerHTML = "";
+            textoHTML.innerHTML = "";
+            display();
+            break;
+        default:
+            index = 0;
+            textoHTML.innerHTML = "";
+            display(eventos);
+    }
+
+    selectNav.forEach(function (element, i) {
+        if (i === index) {
             element.classList.add('active');
         } else {
             element.classList.remove('active');
         }
     });
-
-    switch (id) {
-        case "upcoming":
-            document.getElementById("headDinamico").innerHTML = "EVENTOS FUTUROS";
-            textoHTML.innerHTML = ""
-            display(eventosFuturos);
-            break;
-        case "past":
-            document.getElementById("headDinamico").innerHTML = "EVENTOS PASADOS";
-            textoHTML.innerHTML = ""
-            display(eventosPasados);
-            break;
-        case "contact":
-            document.getElementById("headDinamico").innerHTML = "CONTACTO";
-            nombreEventos.innerHTML = ""
-            printForm();
-            break;
-        case "stats":
-            document.getElementById("headDinamico").innerHTML = "ESTADÍSTICAS";
-            textoHTML.innerHTML = ""
-            nombreEventos.innerHTML = ""
-            display();
-            break;
-        default:
-            document.getElementById("headDinamico").innerHTML = "HOME";
-            textoHTML.innerHTML = ""
-            display(eventos);
-    }
 }
+
 //FUNCION PARA LAS CARDS
 function display(array) {
     var url = location.pathname == "/Pages/Details.html" ? "./Details.html" : "./Pages/Details.html";
@@ -77,8 +77,7 @@ function display(array) {
           </div>
           <div class="item_description">
             <h4 style="color: #DC046C;">${item.name}</h4>
-            <p>${item.description}</p>
-          </div>
+            </div>
           <div class="item_details">
             <p>$${item.price}</p>
             <a class="button_index" href="${url}?id=${item.id}">Más detalles</a>
@@ -91,7 +90,6 @@ function display(array) {
 
 //NAVEGACION ENTRE PÁGINAS
 var time = location.search.split("?time=")[1];
-console.log(time);
 if (time) {
     switch (time) {
         case "upcoming":
@@ -107,16 +105,8 @@ if (time) {
             imprimir("home");
     }
 } else {
-    imprimir("home"); // Manejar el caso en el que no se encuentre un valor válido en time[1]
+    imprimir("home");
 }
-
-
-let before = document.getElementById(before) // flecha izquierda
-let after = document.getElementById(after) //flecha derecha
-let counter = 0;
-const cont = selectNav[0]
-
-
 
 //FORMULARIO DE CONTACTO 
 function printForm() {
@@ -157,53 +147,73 @@ function printForm() {
 </div>
 </footer>`
 }
+//CAROUSEL
 
+let buttonPrev = document.getElementById("before") // flecha izquierda
+buttonPrev.addEventListener("click", function (e) {
+    var page = document.getElementById("headDinamico").innerText
+    if (buttonNav.indexOf(page) == 0) {
+        changePage(4)
+    } else {
+        changePage(buttonNav.indexOf(page) - 1)
+    }
+})
 
-
-
-
-
-
-after.addEventListener("click", function (e) {
-    var page = document.getElementById("headDinamico")
+let buttonNext = document.getElementById("after") //flecha derecha
+buttonNext.addEventListener("click", function (e) {
+    var page = document.getElementById("headDinamico").innerText
     if (buttonNav.indexOf(page) == 4) {
         changePage(0)
     } else {
-        changePage(buttonNavegacion.indexOf(page) + 1)
+        changePage(buttonNav.indexOf(page) + 1)
     }
 })
 
-before.addEventListener("click", function (e) {
-    var page = document.getElementById("headDinamico")
-    if (buttonNave.indexOf(page) == 0) {
-        changePage(4)
-    } else {
-        changePage(buttonNavegacion.indexOf(page) - 1)
+function changePage(i) {
+    switch (i) {
+        case 0: display(eventos)
+            selectNav[0].classList.add('active')
+            selectNav[1].classList.remove('active')
+            selectNav[2].classList.remove('active')
+            selectNav[3].classList.remove('active')
+            selectNav[4].classList.remove('active')
+            document.getElementById("headDinamico").innerHTML = buttonNav[i]
+            break;
+        case 1: display(eventosFuturos)
+            selectNav[0].classList.remove('active')
+            selectNav[1].classList.add('active')
+            selectNav[2].classList.remove('active')
+            selectNav[3].classList.remove('active')
+            selectNav[4].classList.remove('active')
+            document.getElementById("headDinamico").innerHTML = buttonNav[i]
+            break;
+        case 2: display(eventosPasados)
+            selectNav[0].classList.remove('active')
+            selectNav[1].classList.remove('active')
+            selectNav[2].classList.add('active')
+            selectNav[3].classList.remove('active')
+            selectNav[4].classList.remove('active')
+            document.getElementById("headDinamico").innerHTML = buttonNav[i]
+            textoHTML.innerHTML = ""
+            break;
+        case 3: printForm()
+            selectNav[0].classList.remove('active')
+            selectNav[1].classList.remove('active')
+            selectNav[2].classList.remove('active')
+            selectNav[3].classList.add('active')
+            selectNav[4].classList.remove('active')
+            document.getElementById("headDinamico").innerHTML = buttonNav[i]
+            nombreEventos.innerHTML = ""
+            break;
+        case 4: display(eventos)
+            selectNav[0].classList.remove('active')
+            selectNav[1].classList.remove('active')
+            selectNav[2].classList.remove('active')
+            selectNav[3].classList.remove('active')
+            selectNav[4].classList.add('active')
+            document.getElementById("headDinamico").innerHTML = buttonNav[i]
+            nombreEventos.innerHTML = ""
+            textoHTML.innerHTML = ""
+
     }
-})
-
-
-
-
-
-// function changePage(i) {
-//     switch (i) {
-//         case 0: display(eventos)
-//             document.getElementById("headDinamico").innerHTML = buttonNavegacion[i]
-//             break;
-//         case 1: display(eventosFuturos)
-//             document.getElementById("headDinamico").innerHTML = buttonNavegacion[i]
-//             arrayAFiltrar = eventosFuturos
-//             break;
-//         case 2: display(eventosPasados)
-//             document.getElementById("headDinamico").innerHTML = buttonNavegacion[i]
-//             arrayAFiltrar = eventosPasados
-//             break;
-//         case 3: imprimirFormulario("contact")
-//             document.getElementById("headDinamico").innerHTML = buttonNavegacion[i]
-//             break;
-//         case 4: imprimirStats("stats")
-//             document.getElementById("headDinamico").innerHTML = buttonNavegacion[i]
-//             break;
-//     }
-// }
+}
