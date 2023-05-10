@@ -1,5 +1,6 @@
 const fechaBase = dataAmazing.fechaActual;
 let eventos = dataAmazing.eventos
+var searchContainer = document.getElementById("container_search")
 
 //FILTROS EVENTOS POR FECHA
 const eventosFuturos = eventos.filter(eventos => eventos.date > fechaBase);
@@ -8,6 +9,7 @@ const eventosPasados = eventos.filter(eventos => eventos.date < fechaBase);
 let nombreEventos = document.getElementById("allEvents")
 let contenedorFiltros = document.getElementsByClassName("container_searches")
 var textoHTML = document.getElementById("form")
+arrayAFiltrar = []
 
 // RESALTAR BOTONES DEL NAVBAR Y MOSTRAR DIFERENTES PÁGINAS
 
@@ -26,33 +28,40 @@ for (var i = 0; i < selectNav.length; i++) {
 //FUNCIÓN PARA CAMBIAR DE PÁGINA, HEADER Y RESALTAR BOTONES NAVBAR
 function imprimir(id) {
     var index = 0;
-
     switch (id) {
         case "upcoming":
+            arrayAFiltrar = eventosFuturos
             index = 1;
+            searchContainer.style.display= "flex"
             textoHTML.innerHTML = "";
-            display(eventosFuturos);
+            print(eventosFuturos);
             break;
         case "past":
+            arrayAFiltrar = eventosPasados
             index = 2;
+            searchContainer.style.display= "flex"
             textoHTML.innerHTML = "";
-            display(eventosPasados);
+            print(eventosPasados);
             break;
         case "contact":
             index = 3;
+            searchContainer.style.display= "none"
             nombreEventos.innerHTML = "";
             printForm();
             break;
         case "stats":
             index = 4;
+            searchContainer.style.display= "none"
             nombreEventos.innerHTML = "";
             textoHTML.innerHTML = "";
             display();
             break;
         default:
+            arrayAFiltrar = eventos
             index = 0;
+            searchContainer.style.display= "flex"
             textoHTML.innerHTML = "";
-            display(eventos);
+            print(eventos);
     }
 
     selectNav.forEach(function (element, i) {
@@ -65,7 +74,7 @@ function imprimir(id) {
 }
 
 //FUNCION PARA LAS CARDS
-function display(array) {
+function print(array) {
     var url = location.pathname == "/Pages/Details.html" ? "./Details.html" : "./Pages/Details.html";
     var imageUrl = location.pathname == "/Pages/Details.html" ? "../Images/" : "./Images/";
 
@@ -147,8 +156,8 @@ function printForm() {
 </div>
 </footer>`
 }
-//CAROUSEL
 
+//CAROUSEL
 let buttonPrev = document.getElementById("before") // flecha izquierda
 buttonPrev.addEventListener("click", function (e) {
     var page = document.getElementById("headDinamico").innerText
@@ -171,23 +180,25 @@ buttonNext.addEventListener("click", function (e) {
 
 function changePage(i) {
     switch (i) {
-        case 0: display(eventos)
+        case 0: print(eventos)
             selectNav[0].classList.add('active')
             selectNav[1].classList.remove('active')
             selectNav[2].classList.remove('active')
             selectNav[3].classList.remove('active')
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
+            searchContainer.style.display= "flex"
             break;
-        case 1: display(eventosFuturos)
+        case 1: print(eventosFuturos)
             selectNav[0].classList.remove('active')
             selectNav[1].classList.add('active')
             selectNav[2].classList.remove('active')
             selectNav[3].classList.remove('active')
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
+            searchContainer.style.display= "flex"
             break;
-        case 2: display(eventosPasados)
+        case 2: print(eventosPasados)
             selectNav[0].classList.remove('active')
             selectNav[1].classList.remove('active')
             selectNav[2].classList.add('active')
@@ -195,6 +206,7 @@ function changePage(i) {
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
             textoHTML.innerHTML = ""
+            searchContainer.style.display= "flex"
             break;
         case 3: printForm()
             selectNav[0].classList.remove('active')
@@ -204,8 +216,9 @@ function changePage(i) {
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
             nombreEventos.innerHTML = ""
+            searchContainer.style.display= "none"
             break;
-        case 4: display(eventos)
+        case 4: print(eventos)
             selectNav[0].classList.remove('active')
             selectNav[1].classList.remove('active')
             selectNav[2].classList.remove('active')
@@ -214,6 +227,24 @@ function changePage(i) {
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
             nombreEventos.innerHTML = ""
             textoHTML.innerHTML = ""
-
+            searchContainer.style.display= "none"
     }
 }
+
+//BUSCADOR
+var inputSearch = document.getElementById("buscador")
+
+inputSearch.addEventListener("keyup", function (evento) {
+    var datoInput = evento.target.value
+    var datosOrdenados = datoInput.trim().toLowerCase()
+    var filtrado = arrayAFiltrar.filter(evento => evento.name.toLowerCase().includes(datosOrdenados))
+
+    if (filtrado.length === 0) {
+        nombreEventos.innerHTML =
+            `<div class="ceroSearch">
+                <img clas="imgCero" src="../Images/nofoundmin.png" alt="SinResultados">
+            </div>`
+    } else {
+        print(filtrado)
+    }
+})

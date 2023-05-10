@@ -41,7 +41,7 @@ h1 {
     color: #ffffff;
 }
 
-.container_searches {
+.container_searches{
     width: 100vw;
     height: 7vh;
     display: flex;
@@ -66,10 +66,9 @@ h1 {
     cursor: pointer;
 }
 
-.container_search {
+.container_search{
     width: 20%;
     height: 4vh;
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
@@ -77,13 +76,6 @@ h1 {
     color: #D42C8C;
 }
 
-.item_search {
-    width: 70%;
-}
-
-label {
-    font-size: 100%;
-}
 
 .section {
     width: 100vw;
@@ -101,7 +93,6 @@ label {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    align-items: start;
 }
 
 .card_container {

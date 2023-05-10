@@ -6,14 +6,10 @@
     font-family: 'Raleway', sans-serif;
 }
 
-
-
 nav {
     width: 100vw;
     height: 12vh;
-    background-color: rgb(14, 14, 14)
-        /* #374BA4 #038C7E #25616F*/
-    ;
+    background-color: rgb(14, 14, 14);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
