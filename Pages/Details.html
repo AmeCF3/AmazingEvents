@@ -28,40 +28,27 @@
 <body>
     <nav>
         <div class="logo_container">
-            <img class="item_logo" src="../Images/LogoAmazingEvents.png" alt="Logo Amazin Events">
+            <img class="item_logo" src="../Images/Logo Amazing Events.png" alt="Logo Amazin Events">
         </div>
         <div class="nav_container">
             <ul>
-                <li><a class="link_nav" href="../index.html">Home</a></li>
-
-                <li><a class="link_nav" href="./UpcomingEvents.html">Eventos futuros</a></li>
-
-                <li><a class="link_nav" href="./PastEvents.html">Eventos pasados</a></li>
-
-                <li><a class="link_nav" href="./Contact.html">Contacto </a></li>
-
-                <li><a class="link_nav" href="./Stats.html">Estadísticas </a></li>
+                <li class="link_nav"> <a class="navlink" id="home" href="../index.html">Home</a></li>
+                <li class="link_nav"><a class="navlink" id="upcoming" href="../index.html?time=upcoming">Eventos futuros</a></li>
+                <li class="link_nav"><a class="navlink" id="past" href="../index.html?time=past">Eventos pasados</a></li>
+                <li class="link_nav"><a class="navlink" id="contact" href="../index.html?time=contact">Contacto</a></li>
+                <li class="link_nav"><a class="navlink" id="stats" href="./Stats.html">Estadísticas</a></li>
             </ul>
         </div>
     </nav>
-    <main>
-        <section class="container_page_details">
-            <div class="container_img_details">
-                <img class="image_details" src="../Images/Conciertodemusica1.jpg" alt="Evento">
-            </div>
-            <div class="containter_dscription_details">
-                <div class="item_title_detils">
-                    <h2>Título evento</h2>
-                </div>
-                <div class="item_description_details">
-                    <p>Acá va la descripción del Evento en general, por ejemplo Vamos al museo de paleontologia a hacer
-                        un recorrido increible para conocer los mas grandes dinosaurios",
-                        "category":"Salida al museo</p>
-                </div>
-            </div>
+    <main class="containerGeneralDetails">
+        <section class="container_page_details"id="prueba">
+
         </section>
     </main>
     <footer>
+        <div class="item_copyright">
+            <p>ACNUR Dic/2022</p>
+        </div>
         <div class="item_icons">
             <ul>
                 <li><i class="fa-brands fa-instagram"></i></li>
@@ -69,8 +56,9 @@
                 <li><i class="fa-brands fa-whatsapp"></i></li>
             </ul>
         </div>
-        <div class="item_copyright">
-            <p>ACNUR Dic/2022</p>
-        </div>
+        
     </footer>
+    <script src="../JS/AmazingEvents.js"></script>
+    <script src="../JS/details.js"></script>
+    <script src="../JS/index.JS"></script>
 </body>

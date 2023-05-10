@@ -29,19 +29,15 @@
 <body>
     <nav>
         <div class="logo_container">
-            <img class="item_logo" src="../Images/LogoAmazingEvents.png" alt="Logo Amazin Events">
+            <img class="item_logo" src="../Images/Logo Amazing Events.png" alt="Logo Amazin Events">
         </div>
         <div class="nav_container">
             <ul>
-                <li><a class="link_nav" href="../index.html">Home</a></li>
-
-                <li><a class="link_nav" href="./UpcomingEvents.html">Eventos futuros</a></li>
-
-                <li><a class="link_nav" href="./PastEvents.html">Eventos pasados</a></li>
-
-                <li><a class="link_nav" href="./Contact.html">Contacto </a></li>
-
-                <li class="item_active">Estadísticas</li>
+                <li class="link_nav"> <a class="navlink" id="home" href="../index.html">Home</a></li>
+                <li class="link_nav"><a class="navlink" id="upcoming" href="../index.html?time=upcoming">Eventosfuturos</a></li>
+                <li class="link_nav"><a class="navlink" id="past" href="../index.html?time=past">Eventos pasados</a></li>
+                <li class="link_nav"><a class="navlink" id="contact" href="../index.html?time=contact">Contacto</a></li>
+                <li class="link_nav active"><a class="navlink" id="stats" href="#">Estadísticas</a></li>
             </ul>
         </div>
     </nav>
@@ -62,12 +58,12 @@
             </div>
         </section>
 
-        <div class="container_table">
+        <div id=stats class="container_table">
             <table>
                 <tr>
                     <th style="color: #DC046C; background-color:#374BA4;" colspan="3">Estadísticas de los eventos</th>
                 </tr>
-                <tr style="color: white; background-color:#374BA4;" >
+                <tr style="color: white; background-color:#374BA4;">
                     <td>Evento con mayor porcentaje de asistencia</td>
                     <td>Evento con menor porcentaje de asistencia</td>
                     <td>Evento con mayor capacidad</td>
@@ -78,7 +74,8 @@
                     <td>Metallica en concierto</td>
                 </tr>
                 <tr>
-                    <th style="color: #DC046C; background-color:#374BA4;" colspan="3">Estadísticas de eventos futuros por categoría</th>
+                    <th style="color: #DC046C; background-color:#374BA4;" colspan="3">Estadísticas de eventos futuros
+                        por categoría</th>
                 </tr>
                 <tr style="color: white; background-color:#374BA4;">
                     <td>Categorias</td>
@@ -101,7 +98,8 @@
                     <td>100%</td>
                 </tr>
                 <tr>
-                    <th style="color: #DC046C; background-color:#374BA4;" colspan="3">Estadísticas de eventos pasados por categoría</th>
+                    <th style="color: #DC046C; background-color:#374BA4;" colspan="3">Estadísticas de eventos pasados
+                        por categoría</th>
                 </tr>
                 <tr style="color: white; background-color:#374BA4;">
                     <td>Categorias</td>
@@ -143,4 +141,10 @@
             <p>ACNUR Dic/2022</p>
         </div>
     </footer>
+
+    <script src="./JS/AmazingEvents.js"></script>
+    <script src="./JS/index.JS"></script>
+    <script src="./JS/details.js"></script>
+    <script src="./JS/Stats.js"></script>
+
 </body>

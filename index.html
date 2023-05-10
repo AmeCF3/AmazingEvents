@@ -18,48 +18,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/jpg" href="../Images/favicon2.png">
-    <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="icon" type="image/jpg" href="./Images/favicon2.png">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/index.css">
+    <link rel="stylesheet" href="./CSS/contacto.css">
     <title>Amazing Events</title>
 </head>
 
 <body>
     <nav>
         <div class="logo_container">
-            <img class="item_logo" src="../Images/LogoAmazingEvents.png" alt="Logo Amazin Events">
+            <img class="item_logo" src="./Images/Logo Amazing Events.png" alt="Logo Amazin Events">
         </div>
         <div class="nav_container">
-            <ul>
-                <li><a class="link_nav" href="../index.html">Home</a></li>
-
-                <li class="item_active">Eventos futuros</li>
-
-                <li><a class="link_nav" href="./PastEvents.html">Eventos pasados</a></li>
-
-                <li><a class="link_nav" href="./Contact.html">Contacto </a></li>
-
-                <li><a class="link_nav" href="./Stats.html">Estadísticas </a></li>
+            <ul id="listNames">
+                <li class="link_nav"><a class="navlink" id="home" href="#">Home</a></li>
+                <li class="link_nav"><a class="navlink" id="upcoming" href="#">Eventos futuros</a></li>
+                <li class="link_nav"><a class="navlink" id="past" href="#">Eventos pasados</a></li>
+                <li class="link_nav"><a class="navlink" id="contact" href="#">Contacto</a></li>
+                <li class="link_nav"><a class="navlink" id="stats" href="#">Estadísticas</a></li>
             </ul>
         </div>
     </nav>
     <main>
         <section class="header">
-            <div class="arrows">
-                <a href="../index.html">
+            <div id="before" class="arrows">
+                <a href="#">
                     <span class="material-symbols-outlined">
                         arrow_back_ios
                     </span></a>
             </div>
-            <h1>EVENTOS FUTUROS</h1>
-            <div class="arrows">
-                <a href="./PastEvents.html">
+            <div id="carousel">
+                <h1 id="headDinamico"></h1>
+            </div>
+            <div id="after" class="arrows">
+                <a href="#">
                     <span class="material-symbols-outlined">
                         arrow_forward_ios
                     </span></a>
-
             </div>
         </section>
+
+        <div id="form"></div>
+
         <div class="container_searches">
             <div class="container_filter">
                 <div class="filtro">
@@ -109,58 +110,15 @@
                 <input class="item_search" type="text" name="Evento" id="buscador">
             </div>
         </div>
-
-        <div class="section">
-            <ul>
-                <li>
-                    <div class="card_container">
-                        <div class="item_image">
-                            <img class="img_pages" src="../Images/Cine7.jpg" alt="cine">
-                        </div>
-                        <div class="item_description">
-                            <h4 style="color: #DC046C;">Avengers</h4>
-                            <p>Premier en 3D </p>
-                        </div>
-                        <div class="item_details">
-                            <p>$250</p>
-                            <a  class="button_index" href="./Details.html">Más detalles</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="card_container">
-                        <div class="item_image">
-                            <img class="img_pages" src="../Images/Conciertodemusica1.jpg" alt="Concierto de música">
-                        </div>
-                        <div class="item_description">
-                            <h4 style="color: #DC046C;">Metallica en concierto</h4>
-                            <p>Único recital</p>
-                        </div>
-                        <div class="item_details">
-                            <p>$150</p>
-                            <a  class="button_index" href="./Details.html">Más detalles</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="card_container">
-                        <div class="item_image">
-                            <img class="img_pages" src="../Images/Fiestadedisfraces1.jpg" alt="Fiesta de disfraces">
-                        </div>
-                        <div class="item_description">
-                            <h4 style="color: #DC046C;">Noche de Halloween</h4>
-                            <p>Ven con tu disfraz</p>
-                        </div>
-                        <div class="item_details">
-                            <p>$12</p>
-                            <a  class="button_index" href="./Details.html">Más detalles</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+        <div class="section"> <!--CONTENEDOR DE LAS CARDS -->
+            <div class="ul" id="allEvents">
+            </div>
         </div>
     </main>
     <footer>
+        <div class="item_copyright">
+            <p>©ACNUR Dic/2022</p>
+        </div>
         <div class="item_icons">
             <ul>
                 <li><i class="fa-brands fa-instagram"></i></li>
@@ -168,8 +126,10 @@
                 <li><i class="fa-brands fa-whatsapp"></i></li>
             </ul>
         </div>
-        <div class="item_copyright">
-            <p>ACNUR Dic/2022</p>
-        </div>
     </footer>
+    <script src="./JS/AmazingEvents.js"></script>
+    <script src="./JS/index.JS"></script>
+    <script src="./JS/details.js"></script>
+    <script src="./JS/Stats.js"></script>
+
 </body>

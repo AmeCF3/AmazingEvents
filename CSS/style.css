@@ -6,10 +6,12 @@
     font-family: 'Raleway', sans-serif;
 }
 
+
+
 nav{
     width: 100vw;
-    height: 10vh;
-    background-color: #374BA4   /* #038C7E #25616F*/;
+    height: 12vh;
+    background-color: rgb(14, 14, 14)  /* #374BA4 #038C7E #25616F*/;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -31,56 +33,81 @@ nav{
 
 
 .nav_container{
-    width: 80vw;
+    width: 77vw;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: end;
     align-items: center;
+    padding-right: 10px;
 }
 
-.item_active{
-    background-color:#BF4086;
+
+.navlink{
     color: white;
-}
-
-.item_active:hover{
-    cursor: default;
-    color: #F4E7DD;
-
 }
 
 nav ul{
-    width: 75%;
+    width: 70%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    font-size: 1.6vw;
+    font-size: 1.3vw;
+
 }
+
+nav ul li::before,
+nav ul li::after{
+    content: ' ';
+    border-bottom: 2px solid #D42C8C;
+    position: absolute;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+
+nav ul li::before{
+    bottom: -1px;
+    width: 90%;
+    right: 0;
+}
+
+nav ul li::after{
+    bottom: -5px;
+    width: 70%;
+    left: 0;
+}
+
+.active::before,
+nav ul li:hover:before{
+    width: 70%;
+    opacity: 1;
+}
+
+.active::after,
+nav ul li:hover::after{
+    width: 50%;
+    opacity: 1;
+}
+
 
 nav ul li{
     border-radius: 2px;
-    background-color: rgb(220, 4, 108);
     padding: 3px;
-    text-decoration: none;
+    color: white;
+    position: relative;
+
 }
 
-nav ul li:hover{
-    background-color: #BF4086;
-    color: white;
-    cursor: pointer;
-}
-
-.link_nav{
-    color: white;
-}
 
 footer {
     width: 100vw;
-    height: 7vh;
-    background-color: #F0DDF4;
+    height: 12vh;
     display: flex;
     flex-direction: row;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    border-top: 0.5px solid #8167a9;
+    color: white;
 }
 
 .item_icons {
@@ -89,6 +116,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    
 }
 
 footer>div>ul {
@@ -96,14 +124,15 @@ footer>div>ul {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    color: #DC046C;
-    text-shadow: 0px 1px 2px rgba(31, 28, 28, 0.58);
-
+    color: rgba(14, 14, 14, 0.459);
+    bottom: 0;
 }
 
+
 ul .fa-brands:hover {
-    color: #374BA4;
+    color: #8167a9;
     cursor: pointer;
+
 }
 
 .item_copyright {
@@ -112,14 +141,12 @@ ul .fa-brands:hover {
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 2%;
-    color: #DC046C;
+    padding-left: 2%;
+    color: rgb(14, 14, 14);
     text-shadow: 0px 1px 2px rgba(31, 28, 28, 0.58);
+    font-size: 10px;
 }
 
-footer p {
-    font-family: 'Fjalla One', sans-serif;
-}
 
 button{
     color: white;
@@ -132,7 +159,7 @@ button{
 }
 
 button:hover {
-    background-color: #374BA4;
+    background-color: #8167a9;
     cursor: pointer;
 }
 
