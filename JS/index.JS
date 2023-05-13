@@ -1,15 +1,18 @@
 const fechaBase = dataAmazing.fechaActual;
 let eventos = dataAmazing.eventos
-var searchContainer = document.getElementById("container_search")
+var searchContainer = document.getElementById("searches_container")
+var inputSearch = document.getElementById("buscador")
+let nombreEventos = document.getElementById("allEvents")
+let contenedorFiltros = document.getElementsByClassName("container_searches")
+var textoHTML = document.getElementById("form")
+let search = ""
+let arrayAFiltrar = []
+var chekedCheckbox = []
 
 //FILTROS EVENTOS POR FECHA
 const eventosFuturos = eventos.filter(eventos => eventos.date > fechaBase);
 const eventosPasados = eventos.filter(eventos => eventos.date < fechaBase);
 
-let nombreEventos = document.getElementById("allEvents")
-let contenedorFiltros = document.getElementsByClassName("container_searches")
-var textoHTML = document.getElementById("form")
-arrayAFiltrar = []
 
 // RESALTAR BOTONES DEL NAVBAR Y MOSTRAR DIFERENTES PÁGINAS
 
@@ -32,26 +35,33 @@ function imprimir(id) {
         case "upcoming":
             arrayAFiltrar = eventosFuturos
             index = 1;
-            searchContainer.style.display= "flex"
+            inputSearch.value = ""
+            chekedCheckbox = []
+            searchContainer.style.display = "flex"
+            nombreEventos.style.display = "flex"
             textoHTML.innerHTML = "";
             print(eventosFuturos);
+            allCategories(eventosFuturos);
             break;
         case "past":
             arrayAFiltrar = eventosPasados
             index = 2;
-            searchContainer.style.display= "flex"
+            searchContainer.style.display = "flex"
             textoHTML.innerHTML = "";
+            inputSearch.value = ""
+            chekedCheckbox = []
             print(eventosPasados);
+            allCategories(eventosPasados)
             break;
         case "contact":
             index = 3;
-            searchContainer.style.display= "none"
+            searchContainer.style.display = "none"
             nombreEventos.innerHTML = "";
             printForm();
             break;
         case "stats":
             index = 4;
-            searchContainer.style.display= "none"
+            searchContainer.style.display = "none"
             nombreEventos.innerHTML = "";
             textoHTML.innerHTML = "";
             display();
@@ -59,9 +69,12 @@ function imprimir(id) {
         default:
             arrayAFiltrar = eventos
             index = 0;
-            searchContainer.style.display= "flex"
+            searchContainer.style.display = "flex"
             textoHTML.innerHTML = "";
+            inputSearch.value = ""
+            chekedCheckbox = []
             print(eventos);
+            allCategories(eventos)
     }
 
     selectNav.forEach(function (element, i) {
@@ -187,7 +200,10 @@ function changePage(i) {
             selectNav[3].classList.remove('active')
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
-            searchContainer.style.display= "flex"
+            searchContainer.style.display = "flex"
+            arrayAFiltrar = eventos
+            allCategories(eventos)
+            inputSearch.value = ""
             break;
         case 1: print(eventosFuturos)
             selectNav[0].classList.remove('active')
@@ -196,7 +212,9 @@ function changePage(i) {
             selectNav[3].classList.remove('active')
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
-            searchContainer.style.display= "flex"
+            searchContainer.style.display = "flex"
+            arrayAFiltrar = eventosFuturos
+            allCategories(eventosFuturos)
             break;
         case 2: print(eventosPasados)
             selectNav[0].classList.remove('active')
@@ -206,7 +224,9 @@ function changePage(i) {
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
             textoHTML.innerHTML = ""
-            searchContainer.style.display= "flex"
+            searchContainer.style.display = "flex"
+            arrayAFiltrar = eventosPasados
+            allCategories(eventosPasados)
             break;
         case 3: printForm()
             selectNav[0].classList.remove('active')
@@ -216,7 +236,7 @@ function changePage(i) {
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
             nombreEventos.innerHTML = ""
-            searchContainer.style.display= "none"
+            searchContainer.style.display = "none"
             break;
         case 4: print(eventos)
             selectNav[0].classList.remove('active')
@@ -227,24 +247,71 @@ function changePage(i) {
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
             nombreEventos.innerHTML = ""
             textoHTML.innerHTML = ""
-            searchContainer.style.display= "none"
+            searchContainer.style.display = "none"
     }
 }
 
 //BUSCADOR
-var inputSearch = document.getElementById("buscador")
-
-inputSearch.addEventListener("keyup", function (evento) {
-    var datoInput = evento.target.value
-    var datosOrdenados = datoInput.trim().toLowerCase()
-    var filtrado = arrayAFiltrar.filter(evento => evento.name.toLowerCase().includes(datosOrdenados))
-
-    if (filtrado.length === 0) {
-        nombreEventos.innerHTML =
-            `<div class="ceroSearch">
-                <img clas="imgCero" src="../Images/nofoundmin.png" alt="SinResultados">
-            </div>`
-    } else {
-        print(filtrado)
-    }
+inputSearch.addEventListener("keyup", function (eventos) {
+    var datoInput = eventos.target.value
+    search = datoInput.trim().toLowerCase()
+    filtrosCombinados()
 })
+
+//CHECKBOX DINÁMICOS
+function allCategories(array) {
+    let categories = array.map(eventos => eventos.category)
+    let cantNoRepeat = new Set(categories)
+    let lastCategories = [...cantNoRepeat]
+
+    let eventCategories = ""
+    lastCategories.map(category =>
+        eventCategories +=
+        `<label><input class="item_check" type="checkbox" value="${category}">${category} </label>`
+    )
+    document.getElementById("checkCategories").innerHTML = eventCategories
+    checkboxFunctional()
+}
+
+
+function checkboxFunctional() {
+    var checkbox = document.querySelectorAll('input[type=checkbox')
+    for (i = 0; i < checkbox.length; i++) {
+        checkbox[i].addEventListener("change", function () {
+            chekedCheckbox = []
+            for (i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked) {
+                    chekedCheckbox.push(checkbox[i].value)
+                }
+            }
+            console.log(chekedCheckbox)
+            filtrosCombinados()
+        })
+    }
+}
+
+function filtrosCombinados() {
+    var filtrados = []
+    if (search !== "" && chekedCheckbox.length > 0) {
+        chekedCheckbox.map(category => filtrados.push(...arrayAFiltrar.filter(eventos =>
+            eventos.name.toLowerCase().includes(search) && eventos.category === category)
+        ))
+    }
+    else if (search !== "" && chekedCheckbox.length == 0) {
+        filtrados = arrayAFiltrar.filter(eventos => eventos.name.toLowerCase().includes(search))
+    }
+    else if (search === "" && chekedCheckbox.length > 0) {
+        chekedCheckbox.map(category =>
+            filtrados.push(...arrayAFiltrar.filter(eventos => eventos.category === category)))
+    }
+    else {
+        filtrados = arrayAFiltrar
+    }
+
+    filtrados.length > 0 ?
+        print(filtrados) :
+        nombreEventos.innerHTML =
+        `<div class="ceroSearch">
+            <img clas="imgCero" src="../Images/nofoundmin.png" alt="SinResultados">
+        </div>`
+}

@@ -11,10 +11,6 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
-    /* background-image: linear-gradient(
-        #dc046cc4,
-    ), url(../Images/fondodetails-1.jpg) ; */
 }
 
 .containerGeneralDetails {
@@ -89,7 +85,6 @@ main {
 
 h2 {
     font-family: 'Fjalla One', sans-serif;
-    /* color: #D42C8C rgba(112, 63, 192, 0.7); */
     color: #D42C8C;
     font-size: 3.5vw;
     display: flex;

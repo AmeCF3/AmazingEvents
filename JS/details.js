@@ -1,5 +1,4 @@
 const eventos = dataAmazing.eventos
-
 console.log(location.search)
 var id = location.search.split("?id=").filter(Number)
 

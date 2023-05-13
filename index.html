@@ -58,62 +58,23 @@
                     </span></a>
             </div>
         </section>
-
-        <div id="form"></div>
-
-        <div class="container_searches">
-            <div class="container_filter">
-                <div class="filtro">
-                    <label for="Carrera">
-                        <input class="item_check" type="checkbox" id="Carrera"> Carreras
-                    </label>
-                </div>
-
-                <div class="filtro">
-                    <label for="Ferias_de_comida">
-                        <input class="item_check" type="checkbox" id="Ferias_de_comida"> Ferias de comida
-                    </label>
-                </div>
-
-                <div class="filtro">
-                    <label for="Fiesta_de_disfraces">
-                        <input class="item_check" type="checkbox" id="Fiesta_de_disfraces"> Fiesta de disfraces
-                    </label>
-                </div>
-
-                <div class="filtro">
-                    <label for="Intercambio_de_Libros">
-                        <input class="item_check" type="checkbox" id="Intercambio_de_Libros"> Intercambio de libros
-                    </label>
-                </div>
-
-                <div class="filtro">
-                    <label for="Recitales">
-                        <input class="item_check" type="checkbox" id="Recitales"> Recitales
-                    </label>
-                </div>
-
-                <div class="filtro">
-                    <label for="Salidas_al_museo">
-                        <input class="item_check" type="checkbox" id="Salidas_al_museo"> Salidas al museo
-                    </label>
-                </div>
-
-                <div class="filtro">
-                    <label for="Vamos_al_cine">
-                        <input class="item_check" type="checkbox" id="Vamos_al_cine"> Vamos al cine
-                    </label>
-                </div>
+        <!--CONTENEDOR DE LOS FILTROS -->
+        <div class="container_searches" id="searches_container">
+            <div class="container_check" id="container_check">
+                <div id="checkCategories" class="filtro"></div>
             </div>
             <div class="container_search" id="container_search">
                 <label for="buscador"><i class="fa-solid fa-magnifying-glass"></i></label>
                 <input class="item_search" type="text" name="Evento" placeholder="Busca tu evento" id="buscador">
             </div>
         </div>
-        <div class="section"> <!--CONTENEDOR DE LAS CARDS -->
+        <!--CONTENEDOR DE LAS CARDS -->
+        <div class="section">
             <div class="ul" id="allEvents">
             </div>
         </div>
+        <!--CONTENEDOR DEL FORM -->
+        <div id="form"></div>
     </main>
     <footer>
         <div class="item_copyright">
@@ -129,7 +90,6 @@
     </footer>
     <script src="./JS/AmazingEvents.js"></script>
     <script src="./JS/index.JS"></script>
-    <script src="./JS/details.js"></script>
-    <script src="./JS/Stats.js"></script>
+      <script src="./JS/Stats.js"></script>
 
 </body>
