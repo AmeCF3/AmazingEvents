@@ -19,9 +19,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpg" href="./Images/favicon2.png">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/index.css">
     <link rel="stylesheet" href="./CSS/contacto.css">
+    <link rel="stylesheet" href="./CSS/stats.css">
     <title>Amazing Events</title>
 </head>
 
@@ -76,6 +78,42 @@
         <!--CONTENEDOR DEL FORM -->
         <div id="form"></div>
 
+        <!-- ESTADÍSTICAS -->
+        <div id="stats1">
+            <table class="container_table">
+                <tr class="color">
+                    <th colspan="3">Estadísticas de Eventos</th>
+                </tr>
+                <tr class="titulo">
+                    <th>Evento con Mayor Porcentaje de Asistencia</th>
+                    <th>Evento con Menor Porcentaje de Asistencia</th>
+                    <th>Evento de Mayor Capacidad</th>
+                </tr>
+                <tr id="mayoresymenores">
+                </tr>
+            </table class="container_table">
+            <table id="statsFuturos">
+                <tr class="color">
+                    <th colspan="3">Estadisticas de Eventos Futuros por Categoría</th>
+                </tr>
+                <tr class="titulo">
+                    <th>Categorías</th>
+                    <th>Estimacion de Ingresos</th>
+                    <th>Asistencia Estimada</th>
+                </tr>
+            </table class="container_table">
+            <table id="statsPasados">
+                <tr class="color">
+                    <th colspan="3">Estadisticas de Eventos Pasados por Categoría</th>
+                </tr>
+                <tr class="titulo">
+                    <th>Categorías</th>
+                    <th>Ingresos</th>
+                    <th>Asistencia</th>
+                </tr>
+            </table>
+        </div>
+
         <!-- MODAL -->
         <div id="modalComentario"></div>
 
@@ -93,6 +131,7 @@
         </div>
     </footer>
     <script src="./JS/index.JS"></script>
+    <script src="./JS/form.js"></script>
     <script src="./JS/Stats.js"></script>
 
 </body>

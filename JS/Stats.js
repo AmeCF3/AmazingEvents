@@ -1,5 +1,4 @@
 async function imprimirStats() {
-    console.log(eventos)
 
     // Obtenemos las categorias unicas
     var categorias = []
@@ -21,7 +20,6 @@ async function imprimirStats() {
             }
         )
     })
-    console.log(porCategoria)
     // Obtenemos datos de ingresos y asistencias o estimaciones por categoria
 
     var ingresoYassitencia = []
