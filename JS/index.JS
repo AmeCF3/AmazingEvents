@@ -1,5 +1,5 @@
-const fechaBase = dataAmazing.fechaActual;
-let eventos = dataAmazing.eventos
+let fechaBase
+let eventos
 var searchContainer = document.getElementById("searches_container")
 var inputSearch = document.getElementById("buscador")
 let nombreEventos = document.getElementById("allEvents")
@@ -9,9 +9,18 @@ let search = ""
 let arrayAFiltrar = []
 var chekedCheckbox = []
 
+
 //FILTROS EVENTOS POR FECHA
-const eventosFuturos = eventos.filter(eventos => eventos.date > fechaBase);
-const eventosPasados = eventos.filter(eventos => eventos.date < fechaBase);
+
+async function getData() {
+    let datosApi
+    await fetch("https://amd-amazingevents-api.onrender.com/api/eventos")
+        .then(response => response.json())
+        .then(json => datosApi = json)
+
+    eventos = datosApi.eventos
+    fechaBase = datosApi.fechaActual
+}
 
 
 // RESALTAR BOTONES DEL NAVBAR Y MOSTRAR DIFERENTES PÁGINAS
@@ -28,11 +37,14 @@ for (var i = 0; i < selectNav.length; i++) {
     });
 }
 
+getData()
+
 //FUNCIÓN PARA CAMBIAR DE PÁGINA, HEADER Y RESALTAR BOTONES NAVBAR
 function imprimir(id) {
     var index = 0;
     switch (id) {
         case "upcoming":
+            let eventosFuturos = eventos.filter(evento => evento.date > fechaBase);
             arrayAFiltrar = eventosFuturos
             index = 1;
             inputSearch.value = ""
@@ -44,6 +56,7 @@ function imprimir(id) {
             allCategories(eventosFuturos);
             break;
         case "past":
+            let eventosPasados = eventos.filter(evento => evento.date < fechaBase);
             arrayAFiltrar = eventosPasados
             index = 2;
             searchContainer.style.display = "flex"
@@ -87,28 +100,27 @@ function imprimir(id) {
 }
 
 //FUNCION PARA LAS CARDS
-function print(array) {
-    var url = location.pathname == "/Pages/Details.html" ? "./Details.html" : "./Pages/Details.html";
-    var imageUrl = location.pathname == "/Pages/Details.html" ? "../Images/" : "./Images/";
-
-    var html = array.map(function (item) {
-        return `
-        <div class="card_container">
-          <div class="item_image">
-            <img class="img_pages" src="${imageUrl}${item.image}" alt=${item.name}>
-          </div>
-          <div class="item_description">
-            <h4 style="color: #DC046C;">${item.name}</h4>
-            </div>
-          <div class="item_details">
-            <p>$${item.price}</p>
-            <a class="button_index" href="${url}?id=${item.id}">Más detalles</a>
-          </div>
+function print(eventosArray) {
+    const eventosHTML = eventosArray.map(evento =>
+      `
+      <div class="card_container">
+        <div class="item_image">
+          <img class="img_pages" src="${evento.image}" alt="${evento.name}">
         </div>
-      `;
-    });
-    nombreEventos.innerHTML = html;
-}
+        <div class="item_description">
+          <h4 style="color: #DC046C;">${evento.name}</h4>
+        </div>
+        <div class="item_details">
+          <p>$${evento.price}</p>
+          <a class="button_index" href="./Pages/Details.html?id=${evento.id}">Más detalles</a>
+        </div>
+      </div>
+      `
+    ).join("");
+  
+    nombreEventos.innerHTML = eventosHTML;
+  }
+  
 
 //NAVEGACION ENTRE PÁGINAS
 var time = location.search.split("?time=")[1];
@@ -212,6 +224,7 @@ function changePage(i) {
             selectNav[3].classList.remove('active')
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
+            let eventosFuturos = eventos.filter(evento => evento.date > fechaBase);
             searchContainer.style.display = "flex"
             arrayAFiltrar = eventosFuturos
             allCategories(eventosFuturos)
@@ -224,6 +237,7 @@ function changePage(i) {
             selectNav[4].classList.remove('active')
             document.getElementById("headDinamico").innerHTML = buttonNav[i]
             textoHTML.innerHTML = ""
+            let eventosPasados = eventos.filter(evento => evento.date < fechaBase);
             searchContainer.style.display = "flex"
             arrayAFiltrar = eventosPasados
             allCategories(eventosPasados)
