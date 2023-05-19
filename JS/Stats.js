@@ -1,12 +1,10 @@
-var stats = document.getElementById("stats")
-
-async function initStats() {
+async function imprimirStats() {
     console.log(eventos)
 
     // Obtenemos las categorias unicas
     var categorias = []
 
-    var unique = eventos.map(eventos => eventos.category)
+    var unique = eventos.map(evento => evento.category)
     const quitoRepetidas = new Set(unique)
     categorias = [...quitoRepetidas]
 
@@ -19,7 +17,7 @@ async function initStats() {
         porCategoria.push(
             {
                 categoria: categoria,
-                data: eventos.filter(eventos => eventos.category === categoria)
+                data: eventos.filter(evento => evento.category === categoria)
             }
         )
     })
@@ -85,26 +83,26 @@ async function initStats() {
     //Separo los eventos pasados que son los que poseen asistencia
     let eventosPasados = []
     let eventosFuturos = []
-    await eventos.filter(eventos => {
-        if (eventos.assistance) {
-            eventosPasados.push(eventos)
-        } else { eventosFuturos.push(eventos) }
+    await eventos.filter(evento => {
+        if (evento.assistance) {
+            eventosPasados.push(evento)
+        } else { eventosFuturos.push(evento) }
     })
     //le agregop a cada evento una propiedad calculando el porcentaje de asistencia en funcion de la capacidad del evento
 
-    eventosPasados.map(eventos => {
-        eventos.porcentajeAsistencia = eventos.assistance * 100 / eventos.capacity
+    eventosPasados.map(evento => {
+        evento.porcentajeAsistencia = evento.assistance * 100 / evento.capacity
     })
 
     let asistenciaEventos = []
-    eventosPasados.filter(eventos => { asistenciaEventos.push(eventos.porcentajeAsistencia) })
+    eventosPasados.filter(evento => { asistenciaEventos.push(evento.porcentajeAsistencia) })
     // //Busco el mayor valor y filtro por este el array de eventos
     let mayor = Math.max(...asistenciaEventos)
-    let eventoMayorAsistencia = eventos.filter(eventos => eventos.porcentajeAsistencia === mayor)
+    let eventoMayorAsistencia = eventos.filter(evento => evento.porcentajeAsistencia === mayor)
 
     // Busco el menor valor y filtro por este el array de eventos pasados
     let menor = Math.min(...asistenciaEventos)
-    let eventoMenorAsistencia = eventos.filter(eventos => eventos.porcentajeAsistencia === menor)
+    let eventoMenorAsistencia = eventos.filter(evento => evento.porcentajeAsistencia === menor)
 
     // Busco el evento con mayor capacidad por ordenamiento descendente
     let mayorCapacidad = eventos.sort((a, b) => { return b.capacity - a.capacity })
@@ -129,20 +127,30 @@ async function initStats() {
     //GENERAR LOS DATOS DE CATEGIRIAS DE EVENTOS FUTUROS
 
     var tablaFuturos = document.getElementById("statsFuturos")
+   tablaFuturos.innerHTML = `
+   <tr class="color-tabla">
+                    <th colspan="3">Estadisticas de Eventos Futuros por Categoría</th>
+                </tr>
+                <tr class="titulo-tabla">
+                    <th>Categorías</th>
+                    <th>Estimación de Ingresos</th>
+                    <th>Asistencia Estimada</th>
+                </tr>
 
+   `
     ordenarFuturos = []
     ordenarFuturos.push(...ingresoYassitencia.sort((a, b) => {
         return b.estimacionIngresos - a.estimacionIngresos
     }))
 
-    ordenarFuturos.map(eventos => {
-        if (eventos.estimacionIngresos > 0) {
+    ordenarFuturos.map(evento => {
+        if (evento.estimacionIngresos > 0) {
             tablaFuturos.innerHTML +=
                 `
         <tr>
-              <td>${eventos.categoria}</td>
-              <td>$${eventos.estimacionIngresos}</td>
-              <td>${eventos.porcentajeDeEstimacion}</td>
+              <td>${evento.categoria}</td>
+              <td>$${evento.estimacionIngresos}</td>
+              <td>${evento.porcentajeDeEstimacion}</td>
             </tr>       
         `
         }
@@ -152,7 +160,16 @@ async function initStats() {
     //GENERAR LOS DATOS DE CATEGIRIAS DE EVENTOS Pasados
 
     var tablaPasados = document.getElementById("statsPasados")
-
+    tablaPasados.innerHTML = `
+     <tr class="color-tabla">
+                    <th colspan="3">Estadisticas de Eventos Pasados por Categoría</th>
+                </tr>
+                <tr class="titulo-tabla">
+                    <th>Categorías</th>
+                    <th>Ingresos</th>
+                    <th>Asistencia</th>
+                </tr>
+    `
     let ordenarPasados = []
     ordenarPasados.push(...ingresoYassitencia.sort((a, b) => {
         return b.ingresos - a.ingresos
@@ -172,5 +189,3 @@ async function initStats() {
     })
 
 }
-
-

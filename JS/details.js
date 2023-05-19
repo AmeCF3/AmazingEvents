@@ -4,23 +4,26 @@ var selectId = id[0]
 console.log(selectId)
 const eventoDetalle = []
 
-var detalle = "";
-
 async function getData() {
-    let datosApi
-    await fetch("https://amd-amazingevents-api.onrender.com/api/eventos")
-        .then(response => response.json())
-        .then(json => datosApi = json)
+    try {
+        const response = await fetch("https://amd-amazingevents-api.onrender.com/api/eventos");
+        const data = await response.json();
 
-    eventos = datosApi.eventos
-    displayDetails()
+        if (Array.isArray(data.eventos)) {
+            eventos = data.eventos;
+            displayDetails();
+        } else {
+            console.error("La respuesta de la API no contiene un array válido de eventos:", data);
+        }
+    } catch (error) {
+        console.error("Error al obtener los datos:", error);
+    }
 }
-getData()
-//Con los pasos anteriores sacamos el dato de un parametro,
-// se le hizo un split y filter para separar y filtrar solo el número
 
+getData();
 
 function displayDetails() {
+    var detalle = "";
     for (var i = 0; i < eventos.length; i++) {
         var asis_esti = eventos[i].assistance ? "Assistance" : "Estimate"
         if (eventos[i].id == selectId) {

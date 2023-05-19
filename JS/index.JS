@@ -1,106 +1,132 @@
-let fechaBase
-let eventos
-var searchContainer = document.getElementById("searches_container")
-var inputSearch = document.getElementById("buscador")
-let nombreEventos = document.getElementById("allEvents")
-let contenedorFiltros = document.getElementsByClassName("container_searches")
-var textoHTML = document.getElementById("form")
-let search = ""
-let arrayAFiltrar = []
-var chekedCheckbox = []
-
-
-//FILTROS EVENTOS POR FECHA
+let fechaBase;
+let eventos;
+let searchContainer = document.getElementById("searches_container");
+let inputSearch = document.getElementById("buscador");
+let nombreEventos = document.getElementById("allEvents");
+let contenedorFiltros = document.getElementsByClassName("container_searches");
+let modalComentario = document.getElementById("modalComentario");
+let textoHTML = document.getElementById("form");
+let search = "";
+let arrayAFiltrar = [];
+let checkedCheckbox = [];
 
 async function getData() {
-    let datosApi
-    await fetch("https://amd-amazingevents-api.onrender.com/api/eventos")
-        .then(response => response.json())
-        .then(json => datosApi = json)
+  try {
+    const response = await fetch("https://amd-amazingevents-api.onrender.com/api/eventos");
+    const data = await response.json();
 
-    eventos = datosApi.eventos
-    fechaBase = datosApi.fechaActual
+    if (Array.isArray(data.eventos)) {
+      eventos = data.eventos;
+      fechaBase = data.fechaActual;
+
+      // Llamar a la función imprimir después de obtener los datos
+      imprimir("home");
+    } else {
+      console.error("La respuesta de la API no contiene un array válido de eventos:", data);
+    }
+  } catch (error) {
+    console.error("Error al obtener los datos:", error);
+  }
 }
+
+// Llamar a la función getData al cargar la página
+window.addEventListener('load', function () {
+  getData().then(() => {
+    imprimir("home");
+  });
+});
 
 
 // RESALTAR BOTONES DEL NAVBAR Y MOSTRAR DIFERENTES PÁGINAS
-
 var selectNav = document.querySelectorAll(".link_nav");
 var buttonNav = [];
 
 for (var i = 0; i < selectNav.length; i++) {
-    const element = selectNav[i];
-    buttonNav.push(selectNav[i].innerText);
-    element.addEventListener("click", function (e) {
-        document.getElementById("headDinamico").innerHTML = e.target.innerText;
-        imprimir(e.target.id);
-    });
+  const element = selectNav[i];
+  buttonNav.push(selectNav[i].innerText);
+  element.addEventListener("click", function (e) {
+    document.getElementById("headDinamico").innerHTML = e.target.innerText;
+    imprimir(e.target.id);
+  });
 }
 
-getData()
+
 
 //FUNCIÓN PARA CAMBIAR DE PÁGINA, HEADER Y RESALTAR BOTONES NAVBAR
 function imprimir(id) {
-    var index = 0;
-    switch (id) {
-        case "upcoming":
-            let eventosFuturos = eventos.filter(evento => evento.date > fechaBase);
-            arrayAFiltrar = eventosFuturos
-            index = 1;
-            inputSearch.value = ""
-            chekedCheckbox = []
-            searchContainer.style.display = "flex"
-            nombreEventos.style.display = "flex"
-            textoHTML.innerHTML = "";
-            print(eventosFuturos);
-            allCategories(eventosFuturos);
-            break;
-        case "past":
-            let eventosPasados = eventos.filter(evento => evento.date < fechaBase);
-            arrayAFiltrar = eventosPasados
-            index = 2;
-            searchContainer.style.display = "flex"
-            textoHTML.innerHTML = "";
-            inputSearch.value = ""
-            chekedCheckbox = []
-            print(eventosPasados);
-            allCategories(eventosPasados)
-            break;
-        case "contact":
-            index = 3;
-            searchContainer.style.display = "none"
-            nombreEventos.innerHTML = "";
-            printForm();
-            break;
-        case "stats":
-            index = 4;
-            searchContainer.style.display = "none"
-            nombreEventos.innerHTML = "";
-            textoHTML.innerHTML = "";
-            display();
-            break;
-        default:
-            arrayAFiltrar = eventos
-            index = 0;
-            searchContainer.style.display = "flex"
-            textoHTML.innerHTML = "";
-            inputSearch.value = ""
-            chekedCheckbox = []
-            print(eventos);
-            allCategories(eventos)
-    }
+  let eventosFuturos;
+  let eventosPasados;
+  let index = 0;
 
-    selectNav.forEach(function (element, i) {
-        if (i === index) {
-            element.classList.add('active');
-        } else {
-            element.classList.remove('active');
-        }
-    });
+  switch (id) {
+    case "upcoming":
+      eventosFuturos = eventos.filter(evento => evento.date > fechaBase);
+      arrayAFiltrar = eventosFuturos;
+      index = 1;
+      inputSearch.value = "";
+      checkedCheckbox = [];
+      searchContainer.style.display = "flex";
+      nombreEventos.style.display = "flex";
+      textoHTML.innerHTML = "";
+      print(eventosFuturos);
+      allCategories(eventosFuturos);
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=upcomingEvents");
+      break;
+    case "past":
+      eventosPasados = eventos.filter(evento => evento.date < fechaBase);
+      arrayAFiltrar = eventosPasados;
+      index = 2;
+      searchContainer.style.display = "flex";
+      textoHTML.innerHTML = "";
+      inputSearch.value = "";
+      checkedCheckbox = [];
+      print(eventosPasados);
+      allCategories(eventosPasados);
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=pastEvents");
+      break;
+    case "contact":
+      index = 3;
+      searchContainer.style.display = "none";
+      nombreEventos.innerHTML = "";
+      printForm();
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=contact");
+      break;
+    case "stats":
+      index = 4;
+      searchContainer.style.display = "none";
+      nombreEventos.innerHTML = "";
+      textoHTML.innerHTML = "";
+      imprimirStats();
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=stats");
+      break;
+    default:
+      if (Array.isArray(eventos)) {
+        arrayAFiltrar = eventos;
+        index = 0;
+        searchContainer.style.display = "flex";
+        textoHTML.innerHTML = "";
+        inputSearch.value = "";
+        checkedCheckbox = [];
+        print(eventos);
+        allCategories(eventos);
+        window.history.replaceState(null, null, window.location.origin + "/index.html?time=home");
+      } else {
+        console.error("eventos no es un array válido:", eventos);
+      }
+  }
+
+  selectNav.forEach(function (element, i) {
+    if (i === index) {
+      element.classList.add('active');
+    } else {
+      element.classList.remove('active');
+    }
+  });
 }
 
 //FUNCION PARA LAS CARDS
 function print(eventosArray) {
+  if (Array.isArray(eventosArray)) {
     const eventosHTML = eventosArray.map(evento =>
       `
       <div class="card_container">
@@ -117,215 +143,237 @@ function print(eventosArray) {
       </div>
       `
     ).join("");
-  
+
     nombreEventos.innerHTML = eventosHTML;
+  } else {
+    // Manejar la situación cuando eventosArray no es un array válido
+    console.error("eventosArray no es un array válido:", eventosArray);
   }
-  
+}
 
 //NAVEGACION ENTRE PÁGINAS
-var time = location.search.split("?time=")[1];
-if (time) {
-    switch (time) {
-        case "upcoming":
-            imprimir("upcoming");
-            break;
-        case "past":
-            imprimir("past");
-            break;
-        case "contact":
-            imprimir("contact");
-            break;
-        default:
-            imprimir("home");
-    }
-} else {
-    imprimir("home");
+function navigateToPage(time) {
+  switch (time) {
+    case "pastEvents":
+      changePage(2);
+      break;
+    case "upcomingEvents":
+      changePage(1);
+      break;
+    case "contact":
+      changePage(3);
+      break;
+    case "estadistica":
+      changePage(4);
+      break;
+    default:
+      changePage(0);
+  }
+
+  const url = window.location.origin + "/index.html?time=" + time + window.location.hash;
+  window.history.replaceState(null, null, url);
+
+  // Establecer el nombre del case
+  const caseName = time.charAt(0).toUpperCase() + time.slice(1);
+  setState("paginaANavegar", caseName);
+  ChangeTemplateLayaout();
 }
 
 //FORMULARIO DE CONTACTO 
 function printForm() {
-    textoHTML.innerHTML =
-        `<div class="general_container">
-<div class="img_contac_container">
-    <img class="img_contact_item" src="../Images/contactimage.png" alt="Contacto">
-</div>
-<form class="form_container" action="./Contact.html">
-    <div class="mb-3">
-        <label class="form-label">Nombre:</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nombre completo">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Email:</label>
-        <input type="email" class="form-control" id="exampleFormControlInput2"
-            placeholder="email@ejemplo.com">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Mensaje:</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-    </div>
-    <div class="button_contact_container">
-        <button class="item_button_contacto"> Contactar </button>
-    </div>
-</form>
-</div>
-<footer>
-<div class="item_copyright">
- <p>©ACNUR Dic/2022</p>
-</div>
-<div class="item_icons">
- <ul>
-     <li><i class="fa-brands fa-instagram"></i></li>
-     <li><i class="fa-brands fa-facebook"></i></li>
-     <li><i class="fa-brands fa-whatsapp"></i></li>
- </ul>
-</div>
-</footer>`
+  textoHTML.innerHTML = `
+    <div class="general_container">
+      <div class="img_contac_container">
+        <img class="img_contact_item" src="../Images/contactimage.png" alt="Contacto">
+      </div>
+      <form class="form_container">
+        <div class="mb-3">
+          <label class="form-label">Nombre:</label>
+          <input type="text" class="form-control" id="nombreInput" placeholder="nombre completo">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email:</label>
+          <input type="email" class="form-control" id="emailInput" placeholder="email@ejemplo.com">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Mensaje:</label>
+          <textarea class="form-control" id="mensajeInput" rows="5"></textarea>
+        </div>
+        <div class="button_contact_container">
+          <input type="submit" id="buttonform" class="item_button_contacto" value="Contactar">
+        </div>
+      </form>
+    </div>`;
 }
 
 //CAROUSEL
 let buttonPrev = document.getElementById("before") // flecha izquierda
 buttonPrev.addEventListener("click", function (e) {
-    var page = document.getElementById("headDinamico").innerText
-    if (buttonNav.indexOf(page) == 0) {
-        changePage(4)
-    } else {
-        changePage(buttonNav.indexOf(page) - 1)
-    }
-})
+  var page = document.getElementById("headDinamico").innerText;
+  if (buttonNav.indexOf(page) == 0) {
+    changePage(4);
+  } else {
+    changePage(buttonNav.indexOf(page) - 1);
+  }
+});
 
 let buttonNext = document.getElementById("after") //flecha derecha
 buttonNext.addEventListener("click", function (e) {
-    var page = document.getElementById("headDinamico").innerText
-    if (buttonNav.indexOf(page) == 4) {
-        changePage(0)
-    } else {
-        changePage(buttonNav.indexOf(page) + 1)
-    }
-})
+  var page = document.getElementById("headDinamico").innerText;
+  if (buttonNav.indexOf(page) == 4) {
+    changePage(0);
+  } else {
+    changePage(buttonNav.indexOf(page) + 1);
+  }
+});
 
 function changePage(i) {
-    switch (i) {
-        case 0: print(eventos)
-            selectNav[0].classList.add('active')
-            selectNav[1].classList.remove('active')
-            selectNav[2].classList.remove('active')
-            selectNav[3].classList.remove('active')
-            selectNav[4].classList.remove('active')
-            document.getElementById("headDinamico").innerHTML = buttonNav[i]
-            searchContainer.style.display = "flex"
-            arrayAFiltrar = eventos
-            allCategories(eventos)
-            inputSearch.value = ""
-            break;
-        case 1: print(eventosFuturos)
-            selectNav[0].classList.remove('active')
-            selectNav[1].classList.add('active')
-            selectNav[2].classList.remove('active')
-            selectNav[3].classList.remove('active')
-            selectNav[4].classList.remove('active')
-            document.getElementById("headDinamico").innerHTML = buttonNav[i]
-            let eventosFuturos = eventos.filter(evento => evento.date > fechaBase);
-            searchContainer.style.display = "flex"
-            arrayAFiltrar = eventosFuturos
-            allCategories(eventosFuturos)
-            break;
-        case 2: print(eventosPasados)
-            selectNav[0].classList.remove('active')
-            selectNav[1].classList.remove('active')
-            selectNav[2].classList.add('active')
-            selectNav[3].classList.remove('active')
-            selectNav[4].classList.remove('active')
-            document.getElementById("headDinamico").innerHTML = buttonNav[i]
-            textoHTML.innerHTML = ""
-            let eventosPasados = eventos.filter(evento => evento.date < fechaBase);
-            searchContainer.style.display = "flex"
-            arrayAFiltrar = eventosPasados
-            allCategories(eventosPasados)
-            break;
-        case 3: printForm()
-            selectNav[0].classList.remove('active')
-            selectNav[1].classList.remove('active')
-            selectNav[2].classList.remove('active')
-            selectNav[3].classList.add('active')
-            selectNav[4].classList.remove('active')
-            document.getElementById("headDinamico").innerHTML = buttonNav[i]
-            nombreEventos.innerHTML = ""
-            searchContainer.style.display = "none"
-            break;
-        case 4: print(eventos)
-            selectNav[0].classList.remove('active')
-            selectNav[1].classList.remove('active')
-            selectNav[2].classList.remove('active')
-            selectNav[3].classList.remove('active')
-            selectNav[4].classList.add('active')
-            document.getElementById("headDinamico").innerHTML = buttonNav[i]
-            nombreEventos.innerHTML = ""
-            textoHTML.innerHTML = ""
-            searchContainer.style.display = "none"
-    }
+  let eventosFuturos;
+  let eventosPasados;
+  switch (i) {
+    case 0:
+      selectNav[0].classList.add('active');
+      selectNav[1].classList.remove('active');
+      selectNav[2].classList.remove('active');
+      selectNav[3].classList.remove('active');
+      selectNav[4].classList.remove('active');
+      document.getElementById("headDinamico").innerHTML = buttonNav[i];
+      searchContainer.style.display = "flex";
+      arrayAFiltrar = eventos;
+      if (Array.isArray(eventos)) {
+        allCategories(eventos);
+        print(eventos);
+      }
+      inputSearch.value = "";
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=home");
+      break;
+    case 1:
+      eventosFuturos = eventos.filter(evento => evento.date > fechaBase);
+      selectNav[0].classList.remove('active');
+      selectNav[1].classList.add('active');
+      selectNav[2].classList.remove('active');
+      selectNav[3].classList.remove('active');
+      selectNav[4].classList.remove('active');
+      document.getElementById("headDinamico").innerHTML = buttonNav[i];
+      searchContainer.style.display = "flex";
+      arrayAFiltrar = eventosFuturos;
+      if (Array.isArray(eventosFuturos)) {
+        allCategories(eventosFuturos);
+        print(eventosFuturos);
+      }
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=upcomingEvents");
+      break;
+    case 2:
+      eventosPasados = eventos.filter(evento => evento.date < fechaBase);
+      selectNav[0].classList.remove('active');
+      selectNav[1].classList.remove('active');
+      selectNav[2].classList.add('active');
+      selectNav[3].classList.remove('active');
+      selectNav[4].classList.remove('active');
+      document.getElementById("headDinamico").innerHTML = buttonNav[i];
+      textoHTML.innerHTML = "";
+      searchContainer.style.display = "flex";
+      arrayAFiltrar = eventosPasados;
+      if (Array.isArray(eventosPasados)) {
+        allCategories(eventosPasados);
+        print(eventosPasados);
+      }
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=pastEvents");
+      break;
+    case 3:
+      printForm();
+      selectNav[0].classList.remove('active');
+      selectNav[1].classList.remove('active');
+      selectNav[2].classList.remove('active');
+      selectNav[3].classList.add('active');
+      selectNav[4].classList.remove('active');
+      document.getElementById("headDinamico").innerHTML = buttonNav[i];
+      searchContainer.style.display = "none";
+      nombreEventos.innerHTML = "";
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=contact");
+      break;
+    case 4:
+      imprimirStats();
+      selectNav[0].classList.remove('active');
+      selectNav[1].classList.remove('active');
+      selectNav[2].classList.remove('active');
+      selectNav[3].classList.remove('active');
+      selectNav[4].classList.add('active');
+      document.getElementById("headDinamico").innerHTML = buttonNav[i];
+      searchContainer.style.display = "none";
+      nombreEventos.innerHTML = "";
+      textoHTML.innerHTML = "";
+      window.history.replaceState(null, null, window.location.origin + "/index.html?time=stats");
+      break;
+  }
 }
 
-//BUSCADOR
+// BUSCADOR
 inputSearch.addEventListener("keyup", function (eventos) {
-    var datoInput = eventos.target.value
-    search = datoInput.trim().toLowerCase()
-    filtrosCombinados()
-})
+    const datoInput = eventos.target.value;
+    search = datoInput.trim().toLowerCase();
+    filtrosCombinados();
+});
 
-//CHECKBOX DINÁMICOS
+// CHECKBOX DINÁMICOS
 function allCategories(array) {
-    let categories = array.map(eventos => eventos.category)
-    let cantNoRepeat = new Set(categories)
-    let lastCategories = [...cantNoRepeat]
+    if (!Array.isArray(array)) {
+        console.error('El parámetro "array" no es un array válido');
+        return;
+    }
 
-    let eventCategories = ""
-    lastCategories.map(category =>
-        eventCategories +=
-        `<label><input class="item_check" type="checkbox" value="${category}">${category} </label>`
-    )
-    document.getElementById("checkCategories").innerHTML = eventCategories
-    checkboxFunctional()
+    const categories = array.map(evento => evento.category);
+    const uniqueCategories = [...new Set(categories)];
+
+    const eventCategories = uniqueCategories.map(category =>
+        `<label><input class="item_check" type="checkbox" value="${category}">${category}</label>`
+    ).join("");
+
+    document.getElementById("checkCategories").innerHTML = eventCategories;
+    checkboxFunctional();
 }
-
 
 function checkboxFunctional() {
-    var checkbox = document.querySelectorAll('input[type=checkbox')
-    for (i = 0; i < checkbox.length; i++) {
-        checkbox[i].addEventListener("change", function () {
-            chekedCheckbox = []
-            for (i = 0; i < checkbox.length; i++) {
-                if (checkbox[i].checked) {
-                    chekedCheckbox.push(checkbox[i].value)
-                }
-            }
-            console.log(chekedCheckbox)
-            filtrosCombinados()
-        })
-    }
+    const checkboxes = document.querySelectorAll('input[type=checkbox]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", function () {
+            chekedCheckbox = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+            console.log(chekedCheckbox);
+            filtrosCombinados();
+        });
+    });
 }
 
 function filtrosCombinados() {
-    var filtrados = []
+    let filtrados = [];
+
     if (search !== "" && chekedCheckbox.length > 0) {
-        chekedCheckbox.map(category => filtrados.push(...arrayAFiltrar.filter(eventos =>
-            eventos.name.toLowerCase().includes(search) && eventos.category === category)
-        ))
+        chekedCheckbox.forEach(category => {
+            filtrados.push(...arrayAFiltrar.filter(evento =>
+                evento.name.toLowerCase().includes(search) && evento.category === category
+            ));
+        });
     }
-    else if (search !== "" && chekedCheckbox.length == 0) {
-        filtrados = arrayAFiltrar.filter(eventos => eventos.name.toLowerCase().includes(search))
+    else if (search !== "" && chekedCheckbox.length === 0) {
+        filtrados = arrayAFiltrar.filter(evento =>
+            evento.name.toLowerCase().includes(search.toLowerCase()));
     }
     else if (search === "" && chekedCheckbox.length > 0) {
-        chekedCheckbox.map(category =>
-            filtrados.push(...arrayAFiltrar.filter(eventos => eventos.category === category)))
-    }
-    else {
-        filtrados = arrayAFiltrar
+        chekedCheckbox.forEach(category => {
+            filtrados.push(...arrayAFiltrar.filter(evento =>
+                evento.category === category
+            ));
+        });
+    } else {
+        filtrados = arrayAFiltrar;
     }
 
     filtrados.length > 0 ?
         print(filtrados) :
         nombreEventos.innerHTML =
         `<div class="ceroSearch">
-            <img clas="imgCero" src="../Images/nofoundmin.png" alt="SinResultados">
-        </div>`
+            <img class="imgCero" src="../Images/nofoundmin.png" alt="SinResultados">
+        </div>`;
 }
