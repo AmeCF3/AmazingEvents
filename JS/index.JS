@@ -247,6 +247,8 @@ function changePage(i) {
             selectNav[4].classList.remove('active');
             document.getElementById("headDinamico").innerHTML = buttonNav[i];
             searchContainer.style.display = "flex";
+            stats.style.display = "none"
+            stats.style.display = "none"
             arrayAFiltrar = eventos;
             if (Array.isArray(eventos)) {
                 allCategories(eventos);
@@ -264,7 +266,6 @@ function changePage(i) {
             selectNav[4].classList.remove('active');
             document.getElementById("headDinamico").innerHTML = buttonNav[i];
             searchContainer.style.display = "flex";
-            stats.innerHTML = "";
             arrayAFiltrar = eventosFuturos;
             if (Array.isArray(eventosFuturos)) {
                 allCategories(eventosFuturos);
@@ -299,6 +300,7 @@ function changePage(i) {
             document.getElementById("headDinamico").innerHTML = buttonNav[i];
             searchContainer.style.display = "none";
             nombreEventos.innerHTML = "";
+            stats.style.display = "none"
             window.history.replaceState(null, null, window.location.origin + "/index.html?time=contact");
             break;
         case 4:
@@ -312,6 +314,7 @@ function changePage(i) {
             searchContainer.style.display = "none";
             nombreEventos.innerHTML = "";
             formularioHTML.innerHTML = "";
+            stats.style.display = "flex"
             window.history.replaceState(null, null, window.location.origin + "/index.html?time=stats");
             break;
     }

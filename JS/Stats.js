@@ -125,11 +125,11 @@ async function imprimirStats() {
     //GENERAR LOS DATOS DE CATEGIRIAS DE EVENTOS FUTUROS
 
     var tablaFuturos = document.getElementById("statsFuturos")
-   tablaFuturos.innerHTML = `
-   <tr class="color-tabla">
+    tablaFuturos.innerHTML = `
+                <tr class="color">
                     <th colspan="3">Estadisticas de Eventos Futuros por Categoría</th>
                 </tr>
-                <tr class="titulo-tabla">
+                <tr class="titulo">
                     <th>Categorías</th>
                     <th>Estimación de Ingresos</th>
                     <th>Asistencia Estimada</th>
@@ -159,10 +159,10 @@ async function imprimirStats() {
 
     var tablaPasados = document.getElementById("statsPasados")
     tablaPasados.innerHTML = `
-     <tr class="color-tabla">
+     <tr class="color">
                     <th colspan="3">Estadisticas de Eventos Pasados por Categoría</th>
                 </tr>
-                <tr class="titulo-tabla">
+                <tr class="titulo">
                     <th>Categorías</th>
                     <th>Ingresos</th>
                     <th>Asistencia</th>

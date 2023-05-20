@@ -1,0 +1,43 @@
+#stats1 {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 90%;
+    height: auto;
+    background-color: #8b3eff12;
+    margin-bottom: 35px;
+    border-radius: 6px;
+}
+
+.color {
+    height: 6vh;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    background-color: #dc046c9e;
+}
+
+.color th{
+    border-radius: 2px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+td{
+    font-size: 15px;
+    text-align: center;
+    border: 3px solid transparent;
+    
+}
+
+.titulo th{
+    font-weight: bolder;
+    color: #8330ff9d;
+    background-color:  #dc046c36;
+    font-weight: bolder;
+    height: 5vh;
+}
