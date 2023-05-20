@@ -22,22 +22,22 @@ table {
     background-color: #dc046c9e;
 }
 
-.color th{
+.color th {
     border-radius: 2px;
     font-family: 'Fjalla One', sans-serif;
 }
 
-td{
+td {
     font-size: 15px;
     text-align: center;
     border: 3px solid transparent;
-    
+
 }
 
-.titulo th{
+.titulo th {
     font-weight: bolder;
     color: #8330ff9d;
-    background-color:  #dc046c36;
+    background-color: #dc046c36;
     font-weight: bolder;
     height: 5vh;
 }

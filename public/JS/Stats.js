@@ -1,5 +1,5 @@
 async function imprimirStats() {
-
+    
     // Obtenemos las categorias unicas
     var categorias = []
 

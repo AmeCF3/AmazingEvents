@@ -21,33 +21,46 @@
     <link rel="icon" type="image/jpg" href="../Images/favicon2.png">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/index.css">
-    <link rel="stylesheet" href="../CSS/details.css">
+    <link rel="stylesheet" href="../CSS/stats.css">
+
     <title>Amazing Events</title>
 </head>
 
 <body>
     <nav>
         <div class="logo_container">
-            <img class="item_logo" src="../Images/LogoAmazingEvents.png" alt="LogoAmazinEvents">
+            <img class="item_logo" src="../Images/Logo Amazing Events.png" alt="Logo Amazin Events">
         </div>
         <div class="nav_container">
             <ul>
                 <li class="link_nav"> <a class="navlink" id="home" href="../index.html">Home</a></li>
-                <li class="link_nav"><a class="navlink" id="upcoming" href="../index.html?time=upcoming">Eventos futuros</a></li>
+                <li class="link_nav"><a class="navlink" id="upcoming" href="../index.html?time=upcoming">Eventosfuturos</a></li>
                 <li class="link_nav"><a class="navlink" id="past" href="../index.html?time=past">Eventos pasados</a></li>
                 <li class="link_nav"><a class="navlink" id="contact" href="../index.html?time=contact">Contacto</a></li>
-                <li class="link_nav"><a class="navlink" id="stats" href="../index.html?time=stats">Estadísticas</a></li>
+                <li class="link_nav active"><a class="navlink" id="stats" href="#">Estadísticas</a></li>
             </ul>
         </div>
     </nav>
-    <main class="containerGeneralDetails">
-        <div class="container_page_details" id="prueba">
-        </div>
+    <main>
+        <section class="header">
+            <div class="arrows">
+                <a href="./Contact.html">
+                    <span class="material-symbols-outlined">
+                        arrow_back_ios
+                    </span></a>
+            </div>
+            <h1>ESTADÍSTICAS</h1>
+            <div class="arrows">
+                <a href="../index.html">
+                    <span class="material-symbols-outlined">
+                        arrow_forward_ios
+                    </span></a>
+            </div>
+        </section>
+        
+       
     </main>
     <footer>
-        <div class="item_copyright">
-            <p>ACNUR Dic/2022</p>
-        </div>
         <div class="item_icons">
             <ul>
                 <li><i class="fa-brands fa-instagram"></i></li>
@@ -55,8 +68,13 @@
                 <li><i class="fa-brands fa-whatsapp"></i></li>
             </ul>
         </div>
-        
+        <div class="item_copyright">
+            <p>ACNUR Dic/2022</p>
+        </div>
     </footer>
-     <script src="../JS/details.js"></script>
+
+    <script src="./JS/index.JS"></script>
+    <script src="./JS/details.js"></script>
+    <script src="./JS/Stats.js"></script>
 
 </body>
